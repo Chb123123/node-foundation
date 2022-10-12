@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.staticfile.org/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+  <button class="btnGet">发起GET请求</button>
+  <button class="btnPost">发起Post请求</button>
+  <button class="btnDelete">发起DELETE请求</button>
+  <button id="btnJSONP">发起JSONP请求</button>
+  <script>
+    $('.btnGet').on('click', function(){
+      $.ajax({
+        type: 'get',
+        url: 'http://127.0.0.1/api/user',
+        data: {
+          name: '张三',
+          age: 19
+        },
+        success: (res) => {
+          console.log(res)
+        }
+      })
+    })
+    
+    $('.btnPost').on('click', function(){
+      $.ajax({
+        type: 'post',
+        url: 'http://127.0.0.1/api/post',
+        data: {
+          name: '李四',
+          age: 28,
+          
+        },
+        success: (res) => {
+            console.log(res)
+          }
+      })
+    })
+
+    $('.btnDelete').on('click', function(){
+      $.ajax({
+        type: 'delete',
+        url: 'http://127.0.0.1/api/delete',
+        success: (res) => {
+            console.log(res)
+          }
+      })
+    })
+
+    $('#btnJSONP').on('click', function() {
+      $.ajax({
+        method: 'GET',
+        url:'http://127.0.0.1/api/jsonp',
+        dataType: 'jsonp',
+        success: (res) => {
+          console.log(res)
+        }
+      })
+    })
+  </script>
+</body>
+</html>
