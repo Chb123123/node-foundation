@@ -1,0 +1,1463 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "微软雅黑";
+    font-family: 'Linearicons-Free';
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color:#666;
+}
+img{
+    vertical-align: top;
+}
+input{
+    /* 去掉选中后的边框 */
+    outline: none;
+}
+strong{
+    font-weight: normal;
+}
+em{
+    font-style: normal;
+}
+@font-face {
+	font-family: 'Linearicons-Free';
+	src:url('../fonts/Linearicons-Free.eot?w118d');
+	src:url('../fonts/Linearicons-Free.eot?#iefixw118d') format('embedded-opentype'),
+		url('../fonts/Linearicons-Free.woff2?w118d') format('woff2'),
+		url('../fonts/Linearicons-Free.woff?w118d') format('woff'),
+		url('../fonts/Linearicons-Free.ttf?w118d') format('truetype'),
+		url('../fonts/Linearicons-Free.svg?w118d#Linearicons-Free') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+header{
+    /* height:32px; */
+    background-color: rgb(241,241,241);
+}
+.header_aside{
+    margin: auto;
+    width:1200px;
+    height:32px;
+    /* border:1px solid red; */
+    line-height: 32px;
+}
+.header_aside_left{
+    float:left;
+    height:32px;
+}
+.header_aside_left li{
+    float:left;
+    margin-right: 8px;
+}
+.header_aside_left li a:nth-child(3){
+    color:red;
+}
+.header_aside_right{
+    float:right;
+    padding-top: 6px;
+    height:32px;
+}
+.header_aside_right li{
+    float:right;
+    padding: 0 8px;
+    height:18px;
+    line-height: 18px;
+    border-right:1px solid #666;
+}
+.header_aside_right li:nth-child(-n+3)::after{
+    /* background-color: red; */
+    content: "";
+    display: block;
+    float: right;
+    margin:0 5px;
+    font-size: 12px;
+}
+.header_aside_right li:nth-child(-n+1){
+    content: '';
+    border-right: 0;
+}
+/* 导航栏开始 */
+nav{
+    position: relative;
+    margin: auto;
+    height:150px;
+    width: 1200px;
+    /* border:1px solid red; */
+    /* clear:both; */
+}
+
+.nav_left{
+    position: relative;
+    float:left;
+    height: 100px;
+    width: 209px;
+    /* background: url(../upload/下载1.png) no-repeat left center; */
+    /* background-color: blanchedalmond; */
+}
+.nav_left a{
+    position: absolute;
+    display: inline-block;
+    height: 100px;
+    width: 209px;
+    background: url(../upload/下载1.png) no-repeat left center;
+    /* background-size: cover; */
+    /* background-color: red; */
+    font-size: 0;
+}
+.nav_center{
+    float:left;
+    margin-left: 130px;
+    padding-top: 18px;
+    height: 100px;
+    width: 540px;
+    /* border:1px solid red */
+}
+.nav_center input[type=search]{
+    float:left;
+    padding-left: 6px;
+    height:35px;
+    width: 458px;
+    border:2px solid rgb(178,25,27);
+    background: transparent;
+}
+.nav_center input[type=submit]{
+    float:left;
+    height:35px;
+    width: 80px;
+    background: rgb(178,25,27);
+    border: 0;
+    color: white;
+}
+.nav_bar{
+    /* padding-left: 5px; */
+    line-height: 30px;
+    width: 540px;
+    height: 30px;
+}
+.nav_bar li{
+    padding:0 6px;
+    float:left;
+}
+.nav_container{
+    position: relative;
+    float: right;
+    margin: 50px 72px 0 0;
+    line-height: 35px;
+    height:35px;
+    width: 145px;    
+    background: rgb(247,247,247);
+    text-align: center;
+}
+.nav_container a{
+    display: block;
+    height: 35px;
+    width: 145px;
+    font-size: 14px;
+    /* background-color: red; */
+}
+.nav_container a span{
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: -7px;
+    font-size: 8px;
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    line-height: 15px;
+    color: white;
+    border-radius: 8px 8px 8px 0;
+}
+.nav_container a::before{
+    content: '';  
+    margin-left: 10px; 
+    /* border:1px solid red;  */
+    display: block;
+    height:35px;
+    width: 24px;
+    float:left;
+    background: url(../upload/下载_r2_c2.png) no-repeat center;
+}
+.nav_container a::after{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    font-size: 12px;
+    /* background: red; */
+}
+.nav_caption{
+    position: absolute;
+    bottom: 0;
+    height: 45px;
+    width: 1200px;
+    /* border:1px solid red; */
+    /* background-color: red; */
+}
+.nav_caption::before{
+    content: '全部商品分类';
+    display: block;
+    float:left;
+    color:white;
+    line-height: 45px;
+    text-align: center;
+    font-size:18px;
+    background-color: rgb(178,25,27);
+    height: 45px;
+    width: 210px;
+}
+.nav_caption ul{
+    float:left;
+    margin-left: 10px;
+    width: 720px;
+    height: 45px;
+}
+.nav_caption li a{
+    display: block;
+    float:left;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 20px;
+}
+.nav_caption li a:hover{
+    color:rgb(178,25,27)
+}
+.article_wrap{
+    border-top:2px solid rgb(178,25,27);
+}
+/* 固定窗口 */
+.sidebar{
+    /* position: absolute; */
+    position: fixed;
+    top: 340px;
+    left: 20px;
+    /* border: 1px solid red; */
+    z-index: 0;
+    background-color: white;
+    display: none;
+}
+.sidebar li{
+    cursor: pointer;
+    /* display: block; */
+    /* margin-bottom: 10px; */
+    height: 30px;
+    width: 66px;
+    text-align: center;
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    /* background-color: red; */
+    transition: all .5s;
+}
+.sidebarStyle{
+    background: rgb(178,25,27);
+    color: white;
+}
+.acticle_container{
+    position: relative;
+    margin: auto;
+    overflow:hidden ;
+    width: 1200px;
+    /* border:1px solid red; */
+}
+
+.article_wrap aside{
+    /* padding-left: 10px; */
+    float:left;
+    /* width: 210px; */
+}
+.article_left_msg{
+    border-left: 1px solid rgb(200,22,34);
+}
+.article_left_msg li a{
+    display: block;
+    position: relative;  
+    width: 209px;
+    height: 30px;
+    padding-left: 10px;
+    color:white;
+    line-height: 30px;
+    font-size: 14px;
+    background-color: rgb(200,22,34);
+    /* text-align: center; */
+}
+.article_left_msg li a::after{
+    content: '';
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    font-size: 12px;
+}
+.article_left_msg li a:hover{
+    background-color: white;
+    color:rgb(178,25,27);
+}
+.article_center_figure{
+    float:left;
+    margin: 10px;
+    width: 720px;
+    height: 440px;
+    /* border:1px solid red; */
+    background: url(../upload/下载1_r2_c2.jpg) no-repeat;
+    background-size: cover;
+}
+.article_right{
+    float:left;
+    margin-top: 10px;
+    height: 440px;
+    width: 249px;
+    border-top:1px solid #ccc;
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+.article_right_info{
+    position: relative;
+    padding-left:15px;
+    height: 35px;
+    width: 250px;
+    line-height: 35px;
+    /* border-left: 1px solid #ccc; */
+    /* border-top: 1px solid #ccc; */
+    /* border-right: 1px solid #ccc; */
+    border-bottom: 1px dashed #ccc;
+}
+.article_right_info a{
+    display: block;
+    float: right;
+    margin-right: 30px;
+}
+.article_right_info::after{
+    content: "";
+    position: absolute;
+    display: inline-block;
+    right: 15px;
+    font-size: 12px;
+}
+.article_right_msg{
+    padding-top:5px;
+    /* border-left: 1px solid #ccc; */
+    /* border-right: 1px solid #ccc; */
+    /* border-bottom: 1px solid #ccc; */
+}
+.article_right_msg li:nth-child(5){
+    margin-bottom: 5px;
+}
+.article_right_msg li a{
+    display: block;
+    padding-left: 15px;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+}
+.article_right_msg li a:hover{
+    text-decoration: underline;
+    color:rgb(178,25,27);
+}
+.article_right_module{
+    margin-top: -1px;
+    width: 250px;
+    /* border:1px solid #ccc; */
+}
+.article_right_module li a{
+    display: block;
+    float:left;
+    margin-left: -1px;
+    margin-top:-1px;
+    height: 67px;
+    width: 63px;
+    border:1px solid #ccc;
+    text-align: center;
+    /* transition: all 0.5s; */
+}
+.article_right_module li:nth-child(2) a{
+    background: url(../upload/down.png) no-repeat top right;
+}
+.article_right_module li a span{
+    display: block;
+    margin: 5px auto;
+    /* margin-bottom: 10px; */
+    height: 30px;
+    width: 30px;
+    background:url(../upload/下载.png)
+}
+.article_right_figure a{
+    display: block;
+    float:left;
+    margin-left: -1px;
+    width: 250px;
+    height: 71px;
+    background: url(../upload/下载2_r2_c2.jpg) no-repeat;
+    background-size: cover;
+}
+.article_botton_module{
+    float:left;
+    margin-bottom: 20px;
+    width: 1200px;
+    height: 165px;
+    /* border:1px solid red; */
+}
+.article_botton_module::before{
+    content: '';
+    display: block;
+    float:left;
+    width: 206px;
+    height: 165px;
+    background: rgb(92,82,81) url(../upload/recom.png) no-repeat center;
+}
+.article_botton_module ul{
+    /* width: 1200px; */
+    padding-top: 10px;
+    height: 165px;
+    /* clear: both; */
+    overflow: hidden;
+    background-color: rgb(235,235,235);
+}
+.article_botton_module ul li{
+    position: relative;
+    float: left;
+    height: 165px;
+    width: 248px;
+}
+.article_botton_module ul li a{
+    position: relative;
+    display: block;
+    float:left;
+    padding: 10px 0 0 10px;
+    height: 140px;
+    width: 248px;
+   border-right: 1px solid #ccc; 
+}
+.article_botton_module ul li a span{
+    display: inline-block;
+    margin-top: 8px;
+    /* float:left; */
+    padding:1px 5px;
+    text-align: center;
+    font-size: 14px;
+    /* line-height: 18px; */
+    color:white;
+    background-color: rgb(0,162,231);
+
+}
+.article_botton_module ul li a strong{
+    font-size: 12px;
+}
+.article_botton_module ul li:nth-of-type(1)::after{
+    content: '';
+    display: block;
+    position: absolute;
+    right:20px;
+    top:8px;
+    float:right;
+    width: 115px;
+    height: 124px;
+    background: url(../upload/下载3_r2_c2.jpg) no-repeat;
+    background-size: cover;
+    /* background-color: red; */
+}
+.article_botton_module ul li:nth-of-type(2)::after{
+    content: '';
+    display: block;
+    position: absolute;
+    right:20px;
+    top:8px;
+    float:right;
+    width: 120px;
+    height: 112px;
+    background: url(../upload/下载4_r2_c2.jpg);
+    background-size: cover;
+    /* background-color: red; */
+}
+.article_botton_module ul li:nth-of-type(3)::after{
+    content: '';
+    display: block;
+    position: absolute;
+    right:30px;
+    top:8px;
+    float:right;
+    width: 115px;
+    height: 124px;
+    background: url(../upload/下载5_r2_c4.jpg) no-repeat;
+    background-size: cover;
+    /* background-color: red; */
+}
+.article_botton_module ul li:nth-of-type(4)::after{
+    content: '';
+    display: block;
+    position: absolute;
+    right:50px;
+    top:8px;
+    float:right;
+    width: 80px;
+    height: 124px;
+    background: url(../upload/下载6_r2_c6.jpg);
+    background-size: cover;
+    /* background-color: red; */
+}
+
+.article_botton_module ul li:nth-of-type(2)::before{
+    content: '团购';
+    display: inline-block;
+    position: absolute;
+    bottom: 48px;
+    left: 15px;
+    height: 18px;
+    width: 55px;
+    border-radius: 9px;
+    color:white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+    background-color: rgb(95,178,0);
+}
+.article_botton_module ul li:nth-of-type(3)::before{
+    content: '团购';
+    display: inline-block;
+    position: absolute;
+    bottom: 48px;
+    left: 15px;
+    height: 18px;
+    width: 55px;
+    border-radius: 9px;
+    color:white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+    background-color: rgb(229,24,55);
+}
+.article_botton_module ul li:nth-of-type(4)::before{
+    content: '团购';
+    display: inline-block;
+    position: absolute;
+    bottom: 48px;
+    left: 15px;
+    height: 18px;
+    width: 55px;
+    border-radius: 9px;
+    color:white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+    background-color: rgb(4,135,253);
+}
+.branding{
+    width: 1200x;
+    /* border: 1px solid red; */
+}
+.branding_like ul{   
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 1200px;
+    height: 233px;
+    border: 1px solid #ccc;
+}
+.branding_like ul li a{
+    display: block;
+    float: left;
+    padding: 0 20px 10px 30px;
+    margin-top: 10px;
+    height: 221px;
+    width: 199px;
+    /* background-color: red; */
+}
+.branding_like ul li a span{
+    display: block;
+    width: 133px;
+    height: 140px;
+    background-color: red;
+}
+.branding_like ul li a span img{
+    width: 100%;
+    height: 100%;
+}
+.branding_like ul li a strong{
+    display: block;
+    /* margin-right: 100px; */
+    padding-right: 20px;
+    height: 65px;
+    width: 185px;
+    border-right: 1px solid #ccc;
+}
+
+.branding_like ul li a em{
+    font-size: 20px;
+    color: red;
+}
+.branding_amusin{
+    width: 1200px;
+    /* border-top: 2px solid red; */
+    overflow: hidden;
+}
+.branding_amusin_left a{
+    display: block;
+    float:left;
+    height: 405px;
+    width: 405px;
+}
+.branding_amusin_center ul{
+    cursor: pointer;
+    float:left;
+    height: 405px;
+    width: 225px;
+    border: 1px solid #ccc;
+}
+.branding_amusin_center ul li:nth-of-type(1){
+    /* position: relative; */
+    margin: auto;
+    height:38px;
+    width: 200px;
+    text-align: center;
+    line-height: 38px;
+    border-bottom: 1px solid #ccc;
+}
+.branding_amusin_center ul li:nth-child(2){
+    /* position: relative; */
+    height: 209px;
+    width: 224px;
+    /* background-color: red; */
+    background: url(../upload/keyboard.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #ccc;
+    /* border-right: 1px solid #ccc; */
+}
+
+.branding_amusin_center ul li:nth-child(3){
+    /* content: ''; */
+    display: block;
+    /* position: absolute; */
+    position: absolute;
+    height: 157px;
+    width: 224px;
+    background: url(../upload/clothes.png) no-repeat;
+    background-size: cover;   
+    /* background-color: red; */
+
+}
+.branding_amusin_right{
+    position: relative;
+    float: left;
+    width: 406px;
+    height: 406px;
+    background-color: rgb(247,247,247);
+}
+.branding_amusin_right li:nth-child(1){
+    display: block;
+    /* float:left; */
+    margin: auto;
+    height: 40px;
+    width: 350px;
+    text-align: center;
+    line-height: 40px;
+    border-bottom:1px solid #ccc;
+}
+.branding_amusin_right li:nth-child(2){
+    display: block;
+    /* float: left; */
+    height: 205px;
+    width: 405px;
+    background: url(../upload/pot.png) no-repeat;
+    background-size: cover;
+    border-bottom:1px solid #ccc;
+
+}
+.branding_amusin_right li:nth-child(3){
+    display: inline-block;
+    width: 202px;
+    height: 160px;
+    background: url(../upload/shoes.png) no-repeat;
+    background-size: cover;
+    border-right:1px solid #ccc;
+}
+.branding_amusin_right li:nth-child(4){
+    /* display: inline-block; */
+    position: absolute;
+    width: 202px;
+    right: 0;
+    bottom: 0;
+    height: 160px;
+    background: url(../upload/shoes.png) no-repeat;
+    background-size: cover;
+}
+.branding_amusin_right1{
+    float:left;
+    padding: 10px 5px;
+    height: 405px;
+    width: 162px;
+    /* border:1px solid red; */
+}
+.branding_amusin_right1 li{
+    float:left;
+    width: 75px;
+    height: 49px;
+    /* margin-right: 20px; */
+    /* background-color:pink; */
+    /* border:1px solid red; */
+    background: url(../upload/下载30_r2_c2.jpg);
+}
+.branding_amusin_right1 li a{
+    display: inline-block;
+    width: 75px;
+    height: 46px;
+}
+.branding_amusin_right1 li:nth-child(2n+1){
+    border-bottom:1px dashed #ccc;
+    border-right:1px dashed #ccc;
+}
+.branding_amusin_right1 li:nth-child(2n){
+    border-bottom:1px dashed #ccc;
+    /* border-right:1px dashed #ccc; */
+}
+.wiring{
+    margin-top:20px;
+    width: 1200px;
+    /* border: 1px solid red; */
+    overflow: hidden;
+}
+.wiring_top{
+    margin-bottom: 10px;
+}
+.wiring_top span{
+    font-size: 18px;
+    color: rgb(178,25,27);
+}
+.wiring_top_right{
+    float:right;
+    width: 650px;
+    height: 20px;
+    /* border: 1px solid red; */
+}
+.wiring_top_right li a{
+    padding: 0 14.7px;
+    margin-top: 5px;
+    display: block;
+    float: left;
+    height: 12px;
+    line-height: 12px;
+    border-right: 1px solid #ccc;
+    font-size: 12px;
+}
+.wiring_top_right li:nth-of-type(1) a{
+    color:rgb(178,25,27);
+}
+.wiring_top_right li:nth-of-type(9) a{
+    /* color:rgb(178,25,27); */
+    padding-right: 0;
+    border-right: 0;
+}
+.wiring_center{
+    overflow: hidden;
+    border-top:2px solid rgb(178,25,27);
+}
+.wiring_center_left{
+    float: left;
+    width: 210px;
+    background: rgb(249,249,249);
+}
+.wiring_center_left li a{
+    display: block;
+    float: left;
+    margin: 0 10px;
+    font-size:14px;
+    height: 32px;
+    width: 85px;
+    line-height: 32px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.wiring_center_left li:nth-of-type(7) a{
+    margin-left: 0px;
+    height: 261px;
+    width: 210px;
+    background: url(../upload/下载31_r2_c2.jpg) no-repeat;
+    /* background-color: red; */
+    background-size: cover;
+}
+.wiring_center_center{
+    float: left;
+    height: 357px;
+    width: 330px;
+    background: url(../upload/下载32_r2_c2.jpg) no-repeat;
+    background-size: cover;
+}
+.wiring_center_right{
+    float: left;
+    height: 360px;
+    width: 660px;
+    border:1px solid #ccc;
+}
+.wiring_center_right li a{
+    position: relative;
+    display: block;
+    float: left;
+    padding: 20px 0 0 20px;
+    width: 221px;
+    height: 180px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.wiring_center_right li a span{
+    display: block;
+    font-size: 14px;
+    color: red;
+}
+.wiring_center_right li:nth-child(3n) a{
+    width: 216px;
+    border-right: 0;
+}
+.wiring_center_right li:nth-child(n+4) a{
+    border-bottom: 0;
+}
+.wiring_center_right li:nth-child(2) a{
+    padding: 80px 0 0 45px;
+    border-bottom: 0;
+}
+.wiring_center_right li:nth-child(2) span{
+    color: #aaa;
+}
+/* .wiring_center_right li a em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 1px;
+    right: 1px;
+} */
+.wiring_center_right li:nth-of-type(1) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 1px;
+    right: 1px;
+}
+.wiring_center_right li:nth-of-type(2) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 1px;
+    right: 10px;
+}
+.wiring_center_right li:nth-of-type(3) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 3px;
+    right: 16px;
+}
+.wiring_center_right li:nth-of-type(4) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 5px;
+    right: 11px;
+}
+.wiring_center_right li:nth-of-type(5) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    top: 10px;
+    /* right: 10px; */
+}
+.wiring_center_right li:nth-of-type(6) em{
+    display: block;
+    position: absolute;
+    height: 78px;
+    width: 130px;
+    bottom: 46px;
+    right: 10px;
+}
+.wiring_bottom{
+    float:left;
+    margin-top: 20px;
+    width: 1200px;
+    height: 60px;
+    background-color: rgb(247,249,246)
+}
+.wiring_bottom li{
+    float:left;
+    margin: 10px auto;
+    height: 40px;
+    width: 120px;
+    border-right: 1px solid #ccc;
+}
+.wiring_bottom li a{
+    display: block;
+    float:left;
+    margin: 0 10px;
+    height: 40px;
+    width: 100px;
+    background: url(../images/下载1_r2_c2.jpg);
+}
+.mobile{
+    margin-top: 20px;
+    width: 1200px;
+    /* border: 2px solid rgb(178,25,27); */
+}
+.mobile_top span{
+    color: rgb(178,25,27);
+}
+.mobile_top_right{
+    float:right;
+    width: 720px;
+    /* border:1px solid pink; */
+}
+.mobile_top_right li a{
+    display: block;
+    margin-top: 5px;
+    float: right;
+    text-align: center;
+    width: 78px;
+    height: 12px;
+    line-height: 12px;
+    font-size: 12px;
+    border-right:1px solid #aaa;
+}
+.mobile_top_right li:nth-child(1) a{
+    border-right: 0;
+}
+.mobile_top_right li:nth-child(9) a{
+    /* border-right: 0; */
+    color:rgb(178,25,27);
+}
+.modile_center{
+    overflow: hidden;
+    margin-top: 5px;
+    border-top:2px solid rgb(178,25,27);
+}
+.modile_center_left{
+    float: left;
+    width: 210px;
+    background: rgb(249,249,249);
+}
+.modile_center_left li a{
+    display: block;
+    float: left;
+    margin: 0 10px;
+    font-size:14px;
+    height: 32px;
+    width: 85px;
+    line-height: 32px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.modile_center_left li:nth-of-type(7) a{
+    margin-left: 0px;
+    height: 261px;
+    width: 210px;
+    background: url(../upload/下载40_r2_c2.jpg) no-repeat;
+    /* background-color: red; */
+    background-size: cover;
+}
+.modile_center_center{
+    float: left;
+    height: 357px;
+    width: 330px;
+    background: url(../upload/下载41_r2_c2.jpg) no-repeat;
+    background-size: cover;
+}
+.modile_center_right{
+    float: left;
+    height: 360px;
+    width: 660px;
+    border:1px solid #ccc;
+}
+.modile_center_right li a{
+    position: relative;
+    display: block;
+    float: left;
+    padding: 20px 0 0 20px;
+    width: 221px;
+    height: 180px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.modile_center_right li a span{
+    display: block;
+    font-size: 14px;
+    color: red;
+}
+.modile_center_right li:nth-child(3n) a{
+    width: 216px;
+    border-right: 0;
+}
+.modile_center_right li:nth-child(n+4) a{
+    border-bottom: 0;
+}
+.modile_center_right li:nth-child(2) a{
+    padding: 80px 0 0 45px;
+    border-bottom: 0;
+}
+.modile_center_right li:nth-child(2) span{
+    color: #aaa;
+}
+/* .wiring_center_right li a em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 1px;
+    right: 1px;
+} */
+.modile_center_right li:nth-of-type(1) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 22px;
+    right: -20px;
+}
+.modile_center_right li:nth-of-type(2) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 1px;
+    right: 10px;
+}
+.modile_center_right li:nth-of-type(3) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 30px;
+    right: -35px;
+}
+.modile_center_right li:nth-of-type(4) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 24px;
+    right: -20px;
+}
+.modile_center_right li:nth-of-type(5) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    top: -30px;
+    /* right: 10px; */
+}
+.modile_center_right li:nth-of-type(6) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 44px;
+    right: -10px;
+}
+.modile_bottom{
+    float:left;
+    margin-top: 20px;
+    width: 1200px;
+    height: 60px;
+    background-color: rgb(247,249,246)
+}
+.modile_bottom li{
+    float:left;
+    margin: 10px auto;
+    height: 40px;
+    width: 120px;
+    border-right: 1px solid #ccc;
+}
+.modile_bottom li a{
+    display: block;
+    float:left;
+    margin: 0 10px;
+    height: 40px;
+    width: 100px;
+    background: url(../images/下载2_r2_c2.jpg);
+}
+.computer{
+    margin-top: 20px;
+    width: 1200px;
+    /* border: 2px solid rgb(178,25,27); */
+}
+.computer_top span{
+    color: rgb(178,25,27);
+}
+.computer_top_right{
+    float:right;
+    width: 720px;
+    /* border:1px solid pink; */
+}
+.computer_top_right li a{
+    display: block;
+    margin-top: 5px;
+    float: right;
+    text-align: center;
+    width: 78px;
+    height: 12px;
+    line-height: 12px;
+    font-size: 12px;
+    border-right:1px solid #aaa;
+}
+.computer_top_right li:nth-child(1) a{
+    border-right: 0;
+}
+.computer_top_right li:nth-child(9) a{
+    /* border-right: 0; */
+    color:rgb(178,25,27);
+}
+.computer_center{
+    overflow: hidden;
+    margin-top: 5px;
+    border-top:2px solid rgb(178,25,27);
+}
+.computer_center_left{
+    float: left;
+    width: 210px;
+    background: rgb(249,249,249);
+}
+.computer_center_left li a{
+    display: block;
+    float: left;
+    margin: 0 10px;
+    font-size:14px;
+    height: 32px;
+    width: 85px;
+    line-height: 32px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.computer_center_left li:nth-of-type(7) a{
+    margin-left: 0px;
+    height: 261px;
+    width: 210px;
+    background: url(../upload/下载50_r2_c2.jpg) no-repeat;
+    /* background-color: red; */
+    background-size: cover;
+}
+.computer_center_center{
+    float: left;
+    height: 357px;
+    width: 330px;
+    background: url(../upload/下载51_r2_c2.jpg) no-repeat;
+    background-size: cover;
+}
+.computer_center_right{
+    float: left;
+    height: 360px;
+    width: 660px;
+    border:1px solid #ccc;
+}
+.computer_center_right li a{
+    position: relative;
+    display: block;
+    float: left;
+    padding: 20px 0 0 20px;
+    width: 221px;
+    height: 180px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.computer_center_right li a span{
+    display: block;
+    font-size: 14px;
+    color: red;
+}
+.computer_center_right li:nth-child(3n) a{
+    width: 216px;
+    border-right: 0;
+}
+.computer_center_right li:nth-child(n+4) a{
+    border-bottom: 0;
+}
+.computer_center_right li:nth-child(2) a{
+    padding: 80px 0 0 45px;
+    border-bottom: 0;
+}
+.computer_center_right li:nth-child(2) span{
+    color: #aaa;
+}
+/* .wiring_center_right li a em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 1px;
+    right: 1px;
+} */
+.computer_center_right li:nth-of-type(1) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 27px;
+    right: 20px;
+}
+.computer_center_right li:nth-of-type(2) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 1px;
+    right: 10px;
+}
+.computer_center_right li:nth-of-type(3) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 2px;
+    right: 14px;
+}
+.computer_center_right li:nth-of-type(4) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 7px;
+    right: 16px;
+}
+.computer_center_right li:nth-of-type(5) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    left:40px;
+    top: -10px;
+    /* right: 10px; */
+}
+.computer_center_right li:nth-of-type(6) em{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 130px;
+    bottom: 34px;
+    right: -1px;
+}
+.computer_bottom{
+    float:left;
+    margin-top: 20px;
+    width: 1200px;
+    height: 60px;
+    background-color: rgb(247,249,246)
+}
+.computer_bottom li{
+    float:left;
+    margin: 10px auto;
+    height: 40px;
+    width: 120px;
+    border-right: 1px solid #ccc;
+}
+.computer_bottom li a{
+    display: block;
+    float:left;
+    margin: 0 10px;
+    height: 40px;
+    width: 100px;
+    background: url(../images/下载3_r2_c2.jpg);
+}
+.hot{
+    margin-top: 20px;
+    width: 1200px;
+}
+.hot_center{
+    margin-top: 5px;
+    float: left;
+    height: 280px;
+    width: 904px;
+    border: 1px solid #ccc;
+}
+.hot_center li a{
+    position: relative;
+    display: block;
+    margin-left: -1px;
+    margin-top: -1px;
+    height: 140px;
+    width: 222px;
+    float:left;
+    padding: 10px 10px 0 5px;
+    font-size: 12px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+}
+.hot_center li a img{
+    width: 100%;
+    height: 100%;
+}
+.hot_center li a span{
+    display: block;
+    float: left;
+    margin-right: 8px;
+    /* margin: auto; */
+    height: 100px;
+    width: 100px;
+    /* border: 1px solid red; */
+}
+.hot_center li a em{
+    color: rgb(178,25,27);
+    font-size: 18px;
+}
+.hot_center li:nth-child(1) a{
+    height: 280px;
+    width: 240px;
+    /* border: 1px solid red; */
+}
+.hot_center li:nth-child(1) strong{
+    display: block;
+    /* position: absolute; */
+    margin: auto;
+    height: 193px;
+    width: 181px;
+}
+.hot_center li:nth-child(-n+3) a{
+    border-bottom: 0;
+}
+.hot_center_right{
+    float: left;
+    height: 280px;
+    width: 296px;
+}
+.hot_center_right img{
+    margin-top: 5px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-left: 0;
+}
+footer{
+    margin-top: 20px;
+    /* height: 200px; */
+    background-color: rgb(245,245,245)
+}
+.footer_wrap{
+    margin: auto;
+    width: 1200px;
+    /* border-bottom: 1px solid #ccc; */
+    overflow: hidden;
+}
+.footer_top{
+    width: 1200px;
+    height: 110px;
+    border-bottom: 1px solid #ccc;
+    /* border: 1px solid pink; */
+}
+.footer_top a{
+    display: block;
+    float: left;
+    padding-left: 25px;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 200px;
+    height: 60px;
+    /* line-height: 24px; */
+    /* background-color: greenyellow; */
+}
+.footer_top li a span{
+    display: block;
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+    height: 50px;
+    width: 50px;
+    /* background-color: blanchedalmond; */
+    background: url(../images/下载.png);
+}
+.footer_top li a em{
+    font-size: 12px;
+}
+.footer_top li a strong{
+    display: inline-block;
+    margin-top: 8px;
+}
+.footer_top li:nth-child(1) span{
+    background-position: -253px -2px;
+}
+.footer_top li:nth-child(2) span{
+    background-position: -255px -54px;
+}
+.footer_top li:nth-child(3) span{
+    background-position: -256px -106px;
+}
+.footer_top li:nth-child(4) span{
+    background-position: -258px -157px;
+}
+.footer_top li:nth-child(5) span{
+    background-position: -256px -208px;
+}
+.footer_center{
+    padding: 20px 0 10px 0;
+    width: 1200px;
+    /* height: 188px; */
+    overflow: hidden;
+    /* border: 1px solid red; */
+}
+.footer_center_left{
+    float: left;
+    width: 170px;
+    /* margin-top: 20px; */
+    margin-left: 30px;
+    /* border: 1px solid red; */
+}
+.footer_center_left li a{
+    font-size: 12px;
+}
+.footer_center_left li:nth-child(1){
+    margin-bottom: 5px;
+}
+.footer_center_right{
+    float: left;
+    width: 170px;
+    /* border: 1px solid red; */
+    margin-left: 30px;
+    
+}
+.footer_center_right li{
+    width: 170px;
+    text-align: center;
+}
+.footer_center_right li:nth-child(1){
+    margin-bottom: 6px;
+}
+.footer_center_right li:nth-child(2){
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    background: url(../upload/下载.jpg) no-repeat;
+    background-size: cover;
+}
+.footer_center_right li:nth-child(3){
+    font-size: 14px;
+}
+.footer_bottom{
+    width: 1200px;
+    font-size: 12px;
+    border-top: 1px solid #ccc;
+}
+.footer_bottom_top{
+    margin: 10px auto 5px;
+    width: 890px;
+    /* border: 1px solid blue; */
+    overflow: hidden;
+}
+.footer_bottom_top li a{
+    display: block;
+    float: left;
+    padding: 0 10px;
+    border-right: 1px solid #999;
+    height: 12px;
+    line-height: 12px;
+}
+.footer_bottom_top li:nth-last-child(1) a{
+    border-right: 0;
+    padding-right: 0;
+}
+.footer_bottom p{
+    margin-bottom: 5px;
+    text-align: center;
+    color: #777;
+}

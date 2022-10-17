@@ -1,0 +1,200 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: #999;
+}
+input {
+	cursor: pointer;
+}
+.container {
+	margin: 50px auto;
+	width: 1200px;
+	/* border: 1px solid #ccc; */
+}
+.mode {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 1200px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #ccc;
+	z-index: 999;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	line-height: 40px;
+	font-size: 24px;
+	color: #666;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.commodity {
+	position: relative;
+	height: 150px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-top: 3px solid #ccc;
+	box-sizing: border-box;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+.commodity:hover {
+	background-color: #fff5e7;
+}
+.box {
+	position: absolute;
+	left: 49px;
+	top: 30px;
+	width: 400px;
+	height: 100px;
+	/* border: 1px solid #ccc; */
+	color: #666;
+	font-size: 14px;
+}
+.box span {
+	display: block;
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	border: 1px solid #000;
+	/* vertical-align: top; */
+}
+.box span img {
+	width: 100%;
+	height: 100%;
+}
+.infromation {
+	position: absolute;
+	top: 20px;
+	right: 40px;
+	/* border: 1px solid red; */
+	width: 350px;
+	height: 20px;
+	line-height: 20px;
+	color: #999;
+}
+.price {
+	float: left;
+	width: 80px;
+	height: 20px;
+	/* border: 1px solid red; */
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 12px;
+	margin-right: 20px;
+}
+.amount {
+	float: left;
+	border: 1px solid #ccc;
+	width: 100px;
+	height: 20px;
+	margin-right: 20px;
+}
+.amount_num {
+	width: 100px;
+	height: 20px;
+	display: flex;
+	color: #333;
+}
+.amount_num > li {
+	flex: 1;
+	text-align: center;
+	border-right: 1px solid #ccc;
+	cursor: pointer;
+	background-color: white;
+}
+.input_val {
+	display: block;
+	float: left;
+	width: 100%;
+	height: 100%;
+	/* height: 18px; */
+	border: 0;
+	text-align: center;
+}
+/* .amount_num li:nth-child(0){
+    cursor: pointer;
+}
+.amount_num li:nth-child(2){
+    cursor: pointer;
+} */
+.sun {
+	float: left;
+	margin-right: 20px;
+	font-size: 12px;
+}
+.remove {
+	float: right;
+	width: 50px;
+	height: 20px;
+	/* border: 1px solid red; */
+	text-align: center;
+}
+.remove {
+	font-size: 12px;
+}
+/* 结算模块 */
+.settlement {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 1200px;
+	height: 40px;
+	border: 1px solid #ccc;
+	line-height: 40px;
+	font-size: 14px;
+	box-sizing: border-box;
+	padding-left: 20px;
+	z-index: 999;
+	background-color: white;
+}
+.settlement > .delete {
+	margin: 0 10px;
+	cursor: pointer;
+}
+.settlement > .emoty {
+	margin: 0 10px;
+	cursor: pointer;
+}
+.money {
+	height: 40px;
+	width: 300px;
+	/* border: 1px solid red; */
+	box-sizing: border-box;
+	float: right;
+}
+.money > span {
+	cursor: pointer;
+	display: block;
+	float: right;
+	width: 60px;
+	height: 38px;
+	text-align: center;
+	background-color: red;
+	color: white;
+	/* box-shadow: 0 0 6px rgba(0,0,0,.5); */
+	/* margin-top: -1px; */
+}
+.money > p {
+	float: left;
+	/* border: 1px solid red; */
+	font-size: 14px;
+	text-align: center;
+	color: #666;
+}
+.money > p > .num {
+	color: red;
+}
+.money > p > .money_sun {
+	color: red;
+	font-size: 16px;
+	margin: 0 10px;
+}

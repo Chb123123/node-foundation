@@ -1,0 +1,73 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+body {
+	background: url(../img/R-C.jpg) no-repeat 0 0 / cover;
+}
+h1 {
+	font-size: 30px;
+	color: white;
+	text-align: center;
+	font-weight: 500;
+}
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 600px;
+	height: 400px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 20px;
+}
+.login {
+	width: 220px;
+	height: 300px;
+	/* border: 1px solid red; */
+	margin: 50px auto;
+}
+ul {
+	margin-top: 50px;
+	color: white;
+}
+ul > li {
+	height: 30px;
+	margin-bottom: 20px;
+	/* background-color: red; */
+}
+input[type="text"] {
+	border: 0;
+	background-color: transparent;
+	/* color: */
+	padding: 3px 5px;
+	border-bottom: 1px solid white;
+	margin-left: 5px;
+}
+input[type="password"] {
+	border: 0;
+	background-color: transparent;
+	padding: 3px 5px;
+	border-bottom: 1px solid white;
+	margin-left: 5px;
+}
+input[type="submit"] {
+	height: 100%;
+	width: 160px;
+	border-radius: 20px;
+	border: 0;
+	background: -webkit-linear-gradient(left, #b9c1f8, #e78788);
+	color: white;
+}
+.register {
+	margin-top: 20px;
+	text-align: center;
+	color: white;
+	font-size: 12px;
+}

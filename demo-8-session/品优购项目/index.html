@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maxmum-scale=1.0, minmum-scale=1.0, user-scaleble=no">
+    <title>品优购,正品行货，全国配送</title>
+    <meta name="keywords" content="网上购物，销售家电，数码产品，电脑，图书，食品等优质产品，诚信服务，为你提供良好的购物体验!"/>
+    <meta name="description" content="品优购,正品行货，全国配送"/>
+    
+    <link rel="shortcut icon" href=" favicon.ico" />
+    <link rel="stylesheet" href="css/index.css">
+<!-- <script src="js/EasyLazyload.min.js"></script> -->
+    <script src="js/jQuery.js"></script>
+    <script src="js/islogin.js"></script>
+    <script src="../axios.js"></script>
+    <script src="js/index.js"></script>
+    
+    <!-- <script>
+        if((navigator.userAgent.match(/(phone|pad|pod|iPod|ios|iPod|Android|Mobile|BlackBerry|JUC|Fennec|WebOS|Symbian|windows Phone)/i))){
+            window.location.href = '../../移动端项目/rem适配布局/苏宁首页案例制作/index.html'; //手机
+        }
+    </script> -->
+</head>
+<body>
+    <header>
+        <div class="header_aside">
+            <ul class="header_aside_left">
+                <li><a href="#">品优购欢迎你！</a></li>
+                <li id="loginOutBtn"><a href="#">请登入</a></li>
+                <li><a style="color:red" href="品优购注册界面.html" >免费注册</a></li>
+            </ul>
+            <ul class="header_aside_right">
+                <li><a href="#">我的订单</a></li>
+                <li><a href="#">我的品优购</a></li>
+                <li><a href="#">品优购会员</a></li>
+                <li><a href="#">企业采购</a></li>
+                <li><a href="#">关注品优购</a></li>
+                <li><a href="#">客户服务</a></li>
+                <li><a href="#">网站导航</a></li>
+            </ul>
+        </div>
+    </header>
+    <!-- 导航栏开始 -->
+    <nav>
+        <div class="nav_left">
+            <h1>
+                <a href="index.html" title="品优购商城">品优购商场</a>
+            </h1>
+         </div>
+         <div class="nav_center">
+             <form action="">
+                 <input type="search" placeholder="语言开发">
+                 <input type="submit" value="搜索">
+             </form>
+             <ul class="nav_bar">
+                 <li><a style="color:red" href="#">优惠购首发</a></li>
+                 <li><a href="#">亿元优惠</a></li>
+                 <li><a href="#">9.9团购</a></li>
+                 <li><a href="#">每满99减30</a></li>
+                 <li><a href="#">办公用品</a></li>
+                 <li><a href="#">电脑</a></li>
+                 <li><a href="#">通信</a></li>
+             </ul>
+         </div>
+         <div class="nav_container">
+            <a href="http://127.0.0.1:5500/%E8%B4%AD%E7%89%A9%E8%BD%A6%E6%A1%88%E4%BE%8B/index.html">我的购物车<span>8</span></a>
+        </div>  
+         <div class="nav_caption">
+             <ul>
+                <li><a href="#">服装城</a></li> 
+                <li><a href="#">美妆管</a></li> 
+                <li><a href="#">传智超市</a></li> 
+                <li><a href="#">全球购</a></li> 
+                <li><a href="#">闪购</a></li> 
+                <li><a href="#">团购</a></li> 
+                <li><a href="#">拍卖</a></li> 
+                <li><a href="#">有趣</a></li> 
+             </ul>
+         </div>      
+     </nav> 
+     <!-- 导航栏结束   -->
+    <article class="article_wrap">
+        <ul class="sidebar">
+            <li>猜你喜欢</li>
+            <li>百货区</li>
+            <li>家居家具</li>
+            <li>通信设备</li>
+            <li>电脑办公</li>
+            <li>热门疯抢</li>
+            <li style="display: none;" class="sidebar_top"><a href="javascript:;">返回顶部</a></li>
+
+        </ul>
+        <div class="acticle_container">
+            <aside>
+                <ul class="article_left_msg">
+                    <li><a href="#">家用电器</a></li>
+                    <li><a href="品优购商品界面.html">手机、数码、通信</a></li>
+                    <li><a href="#">电脑、办公</a></li>
+                    <li><a href="#">家居、家具、家装、厨具</a></li>
+                    <li><a href="#">男装、女装、童装、内衣</a></li>
+                    <li><a href="#">个护化妆、清洁用品、宠物</a></li>
+                    <li><a href="#">鞋靴、箱包、珠宝、奢侈品</a></li>
+                    <li><a href="#">运动户外、钟表</a></li>
+                    <li><a href="#">汽车、汽车用品</a></li>
+                    <li><a href="#">母婴、玩具</a></li>
+                    <li><a href="#">食品、酒精、生鲜、特产</a></li>
+                    <li><a href="#">医药保险</a></li>
+                    <li><a href="#">图书、音像、电子书</a></li>
+                    <li><a href="#">彩票、旅行、充值、票务</a></li>
+                    <li><a href="#">理财、众筹、白条、保险</a></li>
+                </ul>
+            </aside>
+            <section class="article_center_figure"></section>
+            <aside class="article_right">
+                <div class="article_right_info">品优快报<a href="#">更多</a></div>
+                <ul class="article_right_msg">
+                    <li><a href="#">[特惠] 备战开学季 全民半价数码</a></li>
+                    <li><a href="#">[公告] 品优稳占家电网购六成份额</a></li>
+                    <li><a href="#">[特惠] 百元中秋全品类礼券限量领</a></li>
+                    <li><a href="#">[公告] 上品优生鲜 襄阳沉湖大闸蟹</a></li>
+                    <li><a href="#">[特惠] 每日享折扣品质游</a></li>
+                </ul>
+                <ul class="article_right_module">
+                    <li><a href="#"><span style="background-position: -14px -13px;" ></span>话费</a></li>
+                    <li><a href="#"><span style="background-position: -76px -13px;" ></span>机票</a></li>
+                    <li><a href="#"><span style="background-position: -139px -13px;" ></span>电影票</a></li>
+                    <li><a style="border-right: 10px;" href="#"><span style="background-position: -204px -13px;" ></span>游戏</a></li>
+                    <li><a href="#"><span style="background-position: -14px -84px;" ></span>彩票</a></li>
+                    <li><a href="#"><span style="background-position: -76px -84px;" ></span>加油卡</a></li>
+                    <li><a href="#"><span style="background-position: -139px -84px;" ></span>酒店</a></li>
+                    <li><a style="border-right: 10px;" href="#"><span style="background-position: -204px -84px;" ></span>火车票</a></li>
+                    <li><a href="#"><span style="background-position: -14px -157px;" ></span>众筹</a></li>
+                    <li><a href="#"><span style="background-position: -76px -157px;" ></span>理财</a></li>
+                    <li><a href="#"><span style="background-position: -139px -150px;" ></span>礼品卡</a></li>
+                    <li><a style="border-right: 10px;" href="#"><span style="background-position: -204px -157px;" ></span>白条</a></li>
+                </ul>
+                <div class="article_right_figure"><a href="#"></a></div>
+            </aside>
+            <section class="article_botton_module">
+                <ul>
+                    <li><a href="#">优质好货<br><span>满300减100</span><br><strong>满500减200</strong></a></li>
+                    <li><a href="#">品牌尾货<br><span style="background-color: rgb(95,178,0);" >满300减100</span><br><strong>团购低至9.9</strong></a></li>
+                    <li><a href="#">时尚穿搭<br><span style="background-color: rgb(229,24,55);" >低至3.6折</span><br><strong>暑期出游季</strong></a></li>
+                    <li><a style="border-right: 0;" href="#">0点上新<br><span style="background-color: rgb(4,135,253);">全场包邮</span><br><strong>低至1折</strong></a></li>
+                </ul>
+            </section>
+            <section class="branding">
+                <div class="branding_like">
+                    <span>猜你喜欢</span><a style="display: block;float: right;" href="#">换一批 </a>
+                    <ul class="branding_ul w">
+                        <li><a href="#"><span><img src="upload/下载7_r2_c2.jpg"></span><strong>阳光美包新款单肩包女包时尚子母包四件套女<br><em>￥116.00</em></strong></a></li>
+                        <li><a href="#"><span><img src="upload/下载8_r2_c2.jpg"></span><strong>爱马仕 30cm锅不粘锅NWG8330E电磁炉<br><em>￥99.00</em></strong></a></li>
+                        <li><a href="#"><span><img src="upload/下载9_r2_c2.jpg"></span><strong>接批量<br>(jabar)BOOSI劲步<br><em>￥245.00</em></strong></a></li>
+                        <li><a href="#"><span><img src="upload/下载10_r2_c4.jpg"></span><strong>欧普<br>JYLZ206面板灯平板灯<br><em>￥238.00</em></strong></a></li>
+                        <li><a href="#"><span><img src="upload/下载11_r2_c6.jpg"></span><strong>三星<br>(G5500)移动连<br><em>￥649.00</em></strong></a></li>
+                        <li><a href="#"><span><img src="upload/下载11_r2_c8.jpg"></span><strong>韩国所望 紧致湿润精华露400ml<br><em>￥649.00</em></strong></a></li>
+                    </ul>
+                </div>
+                <p style="margin-bottom: 10px;">百货区</p>
+                <div class="branding_amusin w">                   
+                    <div class="branding_amusin_left"><a href="#"><img src="upload/下载20_r2_c2.jpg" alt=""></a></div>
+                    <div class="branding_amusin_center">
+                        <ul>
+                            <li>好东西</li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>                   
+                        <ul class="branding_amusin_right">
+                            <li><a href="#">品牌街</a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"><img src="upload/nike.png"></a></li>
+                        </ul> 
+                        <ul class="branding_amusin_right1">
+                            <li style="background-position: -7px -12px;"><a href="#"></a></li>
+                            <li style="background-position: -88px -12px;"><a href="#"></a></li>
+                            <li style="background-position: -12px -69px;"><a href="#"></a></li>
+                            <li style="background-position: -88px -69px;"><a href="#"></a></li>
+                            <li style="background-position: -7px -128px;"><a href="#"></a></li>
+                            <li style="background-position: -88px -126px;"><a href="#"></a></li>
+                            <li style="background-position: -12px -184px;"><a href="#"></a></li>
+                            <li style="background-position: -88px -185px;"><a href="#"></a></li>
+                            <li style="background-position: -7px -244px;"><a href="#"></a></li>
+                            <li style="background-position: -88px -245px;"><a href="#"></a></li>
+                            <li style="background-position: -12px -301px;"><a href="#"></a></li>
+                            <li style="background-position: -88px -302px;"><a href="#"></a></li>
+                            <li style="background-position: -7px -359px;"><a href="#"></a></li>
+                            <li style="background-position: -88px -12px;"><a href="#"></a></li>
+                            <li style="background-position: -12px -69px;border-bottom: 0;"><a href="#"></a></li>
+                            <li style="background-position: -88px -69px;border-bottom: 0;"><a href="#"></a></li>                          
+                        </ul>                                        
+                </div>
+                <div class="wiring">
+                    <div class="wiring_top w">
+                        <span>家用电器</span>
+                        <ul class="wiring_top_right">
+                            <li><a href="#">热门</a></li>
+                            <li><a href="#">大家电</a></li>
+                            <li><a href="#">生活电器</a></li>
+                            <li><a href="#">厨房电器</a></li>
+                            <li><a href="#">个护健康</a></li>
+                            <li><a href="#">应季电器</a></li>
+                            <li><a href="#">空气/净水</a></li>
+                            <li><a href="#">新奇特</a></li>
+                            <li><a href="#">高端电器</a></li>
+                        </ul>
+                    </div>
+                    <div class="wiring_center">
+                        <ul class="wiring_center_left">
+                            <li><a href="#">节能补贴</a></li>
+                            <li><a href="#">4k电视</a></li>
+                            <li><a href="#">空气净化器</a></li>
+                            <li><a href="#">IH电饭煲</a></li>
+                            <li><a href="#">滚筒洗衣机</a></li>
+                            <li><a href="#">电热水器</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                        <div class="wiring_center_center"></div>
+                        <ul class="wiring_center_right">
+                            <li><a href="#">每满200减20元<em><img src="upload/下载33_r2_c2.jpg" alt=""></em><span>烘焙节1元抢购</span></a></li>
+                            <li><a href="#">8.20彩电宅购节<span>65寸4K智能彩电3799</span></a></li>
+                            <li><a href="#">消暑神器全场领券<em><img src="upload/下载35_r2_c4.jpg" alt=""></em><span>一元赢空调</span></a></li>
+                            <li><a href="#">买乐视电视享钜惠<em><img src="upload/下载34_r2_c2.jpg" alt=""></em><span>送60个月会员</span></a></li>
+                            <li><a href="#"><em><img src="upload/下载37_r2_c2.jpg" alt=""></em></a></li>
+                            <li><a href="#">买乐视电视享钜惠<em><img src="upload/下载36_r4_c5.jpg" alt=""></em><span>送60个月会员</span></a></li>
+                        </ul>
+                        <ul class="wiring_bottom">
+                            <li><a style="background-position: -10px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -128px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -252px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -371px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -494px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -613px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -734px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -855px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -978px -12px;" href="#"></a></li>
+                            <li style="border-right: 0;"><a style="background-position: -1092px -12px;" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mobile">
+                    <div class="mobile_top w">
+                        <span>手机通信</span>
+                        <ul class="mobile_top_right">
+                            <li><a href="#">手机配件</a></li>
+                            <li><a href="#">店铺精选</a></li>
+                            <li><a href="#">手机卡</a></li>
+                            <li><a href="#">合约机</a></li>
+                            <li><a href="#">口碑推荐</a></li>
+                            <li><a href="#">高性价比</a></li>
+                            <li><a href="#">新机尝鲜</a></li>
+                            <li><a href="#">品质优选</a></li>
+                            <li><a href="#">热门</a></li>
+                        </ul>
+                    </div>
+                    <div class="modile_center">
+                        <ul class="modile_center_left">
+                            <li><a href="#">手机通讯</a></li>
+                            <li><a href="#">以旧换新</a></li>
+                            <li><a href="#">双卡双待</a></li>
+                            <li><a href="#">自营配件</a></li>
+                            <li><a href="#">金属机身</a></li>
+                            <li><a href="#">高清屏</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                        <div class="modile_center_center"></div>
+                        <ul class="modile_center_right">
+                            <li><a href="#">Moto X级<em><img src="upload/下载42_r4_c4.jpg" alt=""></em><span>低至￥2999</span></a></li>
+                            <li><a href="#">G9青春版玫瑰金首发<span>赢0元试用</span></a></li>
+                            <li><a href="#">荣耀V8 2K屏<em><img src="upload/下载43_r3_c9.jpg" alt=""></em><span>￥2799元</span></a></li>
+                            <li><a href="#">乐max2限量秒杀<em><img src="upload/下载44_r8_c4.jpg" alt=""></em><span>每日1899秒</span></a></li>
+                            <li><a href="#"><em><img src="upload/下载45_r5_c6.jpg" alt=""></em></a></li>
+                            <li><a href="#">vivo x7星空灰<em><img src="upload/下载47_r7_c8.jpg" alt=""></em><span>1元赢新机</span></a></li>
+                        </ul>
+                        <ul class="modile_bottom">
+                            <li><a style="background-position: -10px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -128px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -252px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -371px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -494px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -613px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -734px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -855px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -978px -12px;" href="#"></a></li>
+                            <li style="border-right: 0;"><a style="background-position: -1092px -12px;" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="computer">
+                    <div class="computer_top w">
+                        <span>电脑办公</span>
+                        <ul class="computer_top_right">
+                            <li><a href="#">精选配件</a></li>
+                            <li><a href="#">文具电教</a></li>
+                            <li><a href="#">办公网络</a></li>
+                            <li><a href="#">电竞游戏</a></li>
+                            <li><a href="#">DIY硬件</a></li>
+                            <li><a href="#">智能/外设</a></li>
+                            <li><a href="#">潮流影音</a></li>
+                            <li><a href="#">电脑/平板</a></li>
+                            <li><a href="#">热门</a></li>
+                        </ul>
+                    </div>
+                    <div class="computer_center">
+                        <ul class="computer_center_left">
+                            <li><a href="#">SSD硬盘</a></li>
+                            <li><a href="#">显示器</a></li>
+                            <li><a href="#">机械键盘</a></li>
+                            <li><a href="#">台式机</a></li>
+                            <li><a href="#">组装电脑</a></li>
+                            <li><a href="#">配件专区</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                        <div class="computer_center_center"></div>
+                        <ul class="computer_center_right">
+                            <li><a href="#">平板新世界<em><img src="upload/下载53_r2_c2.jpg" alt=""></em><span>开启2IN1时代</span></a></li>
+                            <li><a href="#">全场6期分期免息<span>我和DIY有个约会</span></a></li>
+                            <li><a href="#">消暑神器全场领券<em><img src="upload/下载35_r2_c4.jpg" alt=""></em><span>一元赢空调</span></a></li>
+                            <li><a href="#">低价来袭<em><img src="upload/下载54_r4_c2.jpg" alt=""></em><span>机械键盘低至99元</span></a></li>
+                            <li><a href="#"><em><img src="upload/下载55_r3_c4.jpg" alt=""></em></a></li>
+                            <li><a href="#">潮流手配 尖叫来袭<em><img src="upload/下载56_r5_c6.jpg" alt=""></em><span>满99元减30元</span></a></li>
+                        </ul>
+                        <ul class="computer_bottom">
+                            <li><a style="background-position: -5px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -128px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -252px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -371px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -494px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -613px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -734px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -855px -12px;" href="#"></a></li>
+                            <li><a style="background-position: -978px -12px;" href="#"></a></li>
+                            <li style="border-right: 0;"><a style="background-position: -1092px -12px;" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hot w">
+                    <p>热门疯抢</p>
+                    <ul class="hot_center">
+                          <li><a href="#"><strong><img src="upload/下载60_r2_c2.jpg" alt=""> </strong> 暴风魔镜 小D 虚拟现实智能VR眼镜3<br> <em>￥79.00</em></a></li>  
+                          <li><a href="#"><span><img src="upload/下载64_r2_c2.jpg" alt=""></span>羽博7000毫安z3移动电池/充电<br> <em>￥139.00</em></a></li> 
+                          <li><a href="#"><span><img src="upload/下载65_r2_c4.jpg" alt=""></span> 权威(transwin)A-920 2.0声道<br> <em>￥29.00</em></a></li> 
+                          <li><a style="border-right: 0;" href="#"><span><img src="upload/下载66_r2_c6.jpg" alt=""></span>2016夏季新款短袖镂空大V领蕾丝<br> <em>￥129.00</em></a></li> 
+                          <li><a href="#"><span><img src="upload/下载66_r2_c6.jpg" alt=""></span>2016夏季新款短袖镂空大V领蕾丝<br> <em>￥79.00</em></a></li> 
+                          <li><a href="#"><span><img src="upload/下载66_r2_c6.jpg" alt=""></span>2016夏季新款短袖镂空大V领蕾丝<br> <em>￥79.00</em></a></li>
+                          <li><a style="border-right: 0;" href="#"><span><img src="upload/下载67_r7_c6.jpg" alt=""></span>噗衣2016秋冬新款复古棉麻印花<br> <em>￥129.00</em></a></li>
+                          <!-- <li><a href="#"><img src="upload/下载69_r2_c2.jpg" alt=""></a></li> -->                         
+                    </ul> 
+                    <div class="hot_center_right">
+                        <img src="upload/下载69_r2_c2.jpg" alt="">
+                    </div>
+                </div>
+                </div>
+                
+            </section>
+        </div>
+    </article>
+    <footer>
+        <div class="footer_wrap">
+            <ul class="footer_top">
+                <li><a href="#"><span></span><strong>正品保障<br><em>正品保障，提供发票</em></strong></a></li>
+                <li><a href="#"><span></span><strong>急速物流<br><em>急速物流，急速送达</em></strong></a></li>
+                <li><a href="#"><span></span><strong>无忧售后<br><em>7天无理由退款换货</em></strong></a></li>
+                <li><a href="#"><span></span><strong>特色服务<br><em>私人定制家电套餐</em></strong></a></li>
+                <li><a href="#"><span></span><strong>帮助中心<br><em>您的购物指南</em></strong></a></li>
+            </ul>
+            <div class="footer_center">
+                <ul class="footer_center_left">
+                    <li>购物指南</li>
+                    <li><a href="#">购物流程</a></li>
+                    <li><a href="#">会员介绍</a></li>
+                    <li><a href="#">生活旅行/团购</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">大家电</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+                <ul class="footer_center_left">
+                    <li>配送方式</li>
+                    <li><a href="#">上门自提</a></li>
+                    <li><a href="#">211限时达</a></li>
+                    <li><a href="#">配送服务查询</a></li>
+                    <li><a href="#">配送费收取标准</a></li>
+                    <li><a href="#">海外配送</a></li>
+                </ul>
+                <ul class="footer_center_left">
+                    <li>支付方式</li>
+                    <li><a href="#">货到付款</a></li>
+                    <li><a href="#">在线支付</a></li>
+                    <li><a href="#">分期付款</a></li>
+                    <li><a href="#">邮局汇款</a></li>
+                    <li><a href="#">公司转账</a></li>
+                </ul>
+                <ul class="footer_center_left">
+                    <li>售后服务</li>
+                    <li><a href="#">售后政策</a></li>
+                    <li><a href="#">价格保护</a></li>
+                    <li><a href="#">退款说明</a></li>
+                    <li><a href="#">返修/退换货</a></li>
+                    <li><a href="#">取消订单</a></li>
+                </ul>
+                <ul class="footer_center_left">
+                    <li>特色服务</li>
+                    <li><a href="#">夺宝机</a></li>
+                    <li><a href="#">DIY装机</a></li>
+                    <li><a href="#">延保服务</a></li>
+                    <li><a href="#">品优购E卡</a></li>
+                    <li><a href="#">品优购通信</a></li>
+                </ul>
+                <ul class="footer_center_right">
+                    <li>帮助中心</li>
+                    <li></li>
+                    <li>品优购客户端</li>
+                </ul>
+            </div> 
+            <div class="footer_bottom">
+                <ul class="footer_bottom_top">
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">联系客服</a></li>
+                    <li><a href="#">商家入驻</a></li>
+                    <li><a href="#">营销中心</a></li>
+                    <li><a href="#">手机品优购</a></li>
+                    <li><a href="#">友情链接</a></li>
+                    <li><a href="#">销售联盟</a></li>
+                    <li><a href="#">品优购社区</a></li>
+                    <li><a href="#">品优购公益</a></li>
+                    <li><a href="#">English Site</a></li>
+                    <li><a href="#">Contact U</a></li>
+                </ul>
+                <p>地址:北京市昌平区建材城 西路金燕龙办公楼一楼 邮编:100096 电话:400-618-4000 传真:010-82935100 邮箱:zhanghj+itcast.cn</p>
+                <p>京ICP备 08001421 号京公网安备 110108007702</p>
+            </div>          
+        </div>       
+    </footer>
+<script src="js/EasyLazyload.min.js"></script>
+<script>
+    lazyLoadInit({
+        showTime: 1100,
+        onLoadBackEnd: function(i, e) {
+            console.log("onLoadBackEnd:" + i);
+        },
+        onLoadBackStart: function(i, e) {
+            console.log("onLoadBackStart:" + i);
+        }
+    });
+    $('#loginOutBtn').click(function() {
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1/api/loginOut'
+        }).then(res => {
+            console.log(res)
+        })
+    })
+</script>
+</body>
+</html>
