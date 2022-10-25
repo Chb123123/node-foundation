@@ -113,7 +113,7 @@ exports.login = (req, res) => {
 exports.getUsers = (req, res) => {
   const limit = req.query
   console.log(limit)
-  const sqlStr = 'select * from userInfo limit ?, ?'
+  const sqlStr = 'select username,email,user_pic from userInfo limit ?, ?'
   // req.query 内的数据类型为 str 类型 需要将他们转化为 数字型才能正常执行
   db.query(sqlStr, [parseInt(limit.page), parseInt(limit.size)], (err, results) => {
     if(err) return res.send({
@@ -139,4 +139,52 @@ exports.getUsers = (req, res) => {
  * @apiSuccess {Number} status 返回的状态码
  * @apiSuccess {String} message 返回的接口介绍
  * @apiSuccess {Array} data 返回的数据
+*/
+
+// 更新用户数据
+exports.upDataUserInfo = (req, res) => {
+  const userInfo = req.body
+  console.log(userInfo)
+  const sqlStr1 = 'select * from userInfo where username = ?'
+  db.query(sqlStr1, userInfo.username, (err, results) => {
+    if(err) {
+      return res.send({
+        status: 500,
+        message: '服务器发生错误，请稍后重试！'
+      })
+    }
+    if(results.length > 0) {
+      return res.send({
+        status: 300,
+        message: '更新失败，用户名已存在'
+      })
+    }
+    const sqlStr = 'update userInfo set username = ?, email = ? where id = ?'
+    db.query(sqlStr, [userInfo.username, userInfo.email, parseInt(userInfo.id)], (err,   results) => {
+      if(err) {
+        res.send({
+          status: 400,
+          message: '更新失败',
+        })
+      }
+      console.log(results)
+      res.send({
+        status: 200,
+        message: '用户信息更新成功'
+      })
+    })
+  })
+}
+
+/**
+ * @api {post} /api/upDataUserInfo 更新用户数据
+ * @apiname updataUserInfo
+ * @apiGroup User
+ * 
+ * @apiParam {String} username 更新的用户名
+ * @apiParam {String} email 更新的 email 数据
+ * @apiParam {Number} id 更新用户的 id
+ * 
+ * @apiSuccess {Number} status 请求体返回的状态码
+ * @apiSuccess {String} message 返回的请求说明
 */

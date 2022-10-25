@@ -12,6 +12,8 @@ router.post('/login', userHandler.login)
 // 获取用户列表
 router.get('/getUsers', userHandler.getUsers)
 
+// 更新用户信息
+router.post('/upDataUserInfo', userHandler.upDataUserInfo)
 
 // 将路由共享出去
 module.exports = router
