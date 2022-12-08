@@ -14,11 +14,12 @@
   </style>
 </head>
 <body>
-  <button class="btn">获取文章类名</button><br>
-  <button class="btn1">新增文章类名</button><br>
-
+  <button class="btn">1</button><br>
+  <button class="btn1">获取发布文章</button><br>
+  <button class="btn10">更改图书类名</button><br>
   <input type="text" id="a" placeholder="文章标题" style="margin-top: 100px; margin-left: 100px;"><br>
   <textarea name="" id="b" cols="30" rows="10" placeholder="文章内容"style="margin-top: 50px; margin-left: 100px;"></textarea>
+  <input type="text" id="c" placeholder="文章类型" style="margin-top: 100px; margin-left: 100px;"><br>
   <button class="btn2">发布</button>
   <script type="text/javascript">
     const btn = document.querySelector('.btn')
@@ -35,10 +36,12 @@
     btn1.addEventListener('click', function() {
       // console.log('123')
       axios({
-        url: 'http://127.0.0.1/api/addBookClass',
-        method: 'post',
+        url: 'http://127.0.0.1/api/getArticles',
+        method: 'get',
         params: {
-          className: '都市'
+          userId: 1,
+          page: 5,
+          size: 10,
         }
       }).then(res => {
         console.log(res)
@@ -47,6 +50,7 @@
 
     const a = document.querySelector('#a')
     const b = document.querySelector('#b')
+    const c = document.querySelector('#c')
     const btn2 = document.querySelector('.btn2')
     btn2.addEventListener('click', function() {
       console.log(a.value)
@@ -57,13 +61,34 @@
         data: {
           userId: 1,
           articleTitle: a.value,
-          articleBody : b.value,
-          articleType: '恐怖'
+          articleBody: b.value,
+          articleType: c.value,
+        },
+        
+      }).then(res => {
+        console.log(res)
+        if(res.data.status == 200) {
+          // 当数据添加成功时，清空表单数据
+          a.value = ''
+          b.value = ''
+        }
+      })
+    })
+
+    const btn10 = document.querySelector('.btn10')
+    btn10.addEventListener('click', function() {
+      axios({
+        url: 'http://127.0.0.1/api/updateclass',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          className: '变态',
+          id: 1,
         }
       }).then(res => {
         console.log(res)
-        // a.value = ''
-        // b.value = ''
       })
     })
   </script>

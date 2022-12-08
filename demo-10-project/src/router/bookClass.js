@@ -14,4 +14,13 @@ router.post('/updateclass', bookInfo.upDateClass)
 // 删除图书类名
 router.post('/removeClass', bookInfo.reMoveClass)
 
+// 获取商品信息
+router.get('/getGoods', bookInfo.getGoods)
+
+// 修改商品选中状态
+router.post('/updateCheck', bookInfo.upDateCheck) 
+
+// 修改商品数量
+router.post('/updateCount', bookInfo.upDateCount) 
+
 module.exports = router

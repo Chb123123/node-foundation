@@ -1,9 +1,13 @@
 const db = require('../mysqlFrom/index')
-// const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
+
+// 生成token 的包
+const jwt = require('jsonwebtoken')
+const config = require('../config')
 // 注册路由模块
 exports.reguser = (req, res) => {
   const userItem = req.body
-  // console.log(userItem.username)
+  console.log(userItem)
   if(userItem.username === '' || userItem.password === '') return res.send({
     status: 400,
     message: '用户名或密码不能为空'
@@ -23,8 +27,11 @@ exports.reguser = (req, res) => {
       })
     }
     // 当用户注册的用户名不存在时，将用户的用户名存储在数据库内
-    const addUser = 'insert into userInfo set ?'
-    db.query(addUser, { username: userItem.username, password: userItem.password }, (err, results) => {
+    const addUser = 'insert into userInfo set username = ?, password = ?'
+    // 将用户密码就行加密
+    userItem.password = bcrypt.hashSync(userItem.password, 10)
+
+    db.query(addUser, [ userItem.username, userItem.password ], (err, results) => {
       // 当插入数据发送错误时，返回失败相应数据
       if(err) return res.send({
         status: 0,
@@ -65,32 +72,64 @@ exports.login = (req, res) => {
   // 接收用户登入的信息
   const user = req.body
   // user.password = bcrypt.hashSync(user.password, 10)
-  console.log(user)
-  const sqlStr = 'select * from userInfo where id = ?'
-  db.query(sqlStr, user.id, function(err, results) {
+  console.log(user.password)
+  const sqlStr = 'select * from userInfo where username = ?'
+  db.query(sqlStr, user.username, function(err, results) {
     if(err) return res.send({
       status: 400,
       message: '登入失败，请稍后重试!'
     })
-    // console.log(results[0].username)
-    if(results.length > 0) {
-      if(results[0].username == user.username && results[0].password == user.password) {
-        res.send({
-          status: 200,
-          message: '登入成功'
-        })
-      } else {
-        res.send({
-          status: 400,
-          message: '用户名或密码错误！请重新输入'
-        })
-      }
-    } else {
-      res.send({
-        status: 400,
-        message: '用户不存在'
+    // console.log(results.length)
+    if(results.length !== 1) return res.cc('登入失败！', 300)
+    
+    // 判断密码是否正确
+    const compareResult = bcrypt.compareSync(user.password, results[0].password)
+    console.log(compareResult)
+
+    if(!compareResult) return res.cc('密码错误', 300)
+    // 获取用户的信息
+    const sqlStr2 = 'select * from userInfo where username = ?'
+    db.query(sqlStr2, user.username, (err, results) => {
+      if(err) return res.cc('登入失败')
+      // 获取用户的信息，将用户的头像和密码剔除 
+      const userInfo = { ...results[0], password: '', user_pic: '' }
+      
+      // 生成 token 字符串
+      const tokenStr = jwt.sign(userInfo, config.jwtSecretKey, {
+        expiresIn: '10h' // token有效期为10小时
       })
-    }
+
+      // 登成功将生成的 token 数据返回给客户端
+      res.send({
+        status: 200,
+        message: '登入成功',
+        token: 'Bearer ' + tokenStr
+      })
+    })
+
+
+
+    // 登入成功 生成 token
+    //  
+    // console.log(results[0].username)
+    // if(results.length > 0) {
+    //   if(results[0].username == user.username && results[0].password == user.password) {
+    //     res.send({
+    //       status: 200,
+    //       message: '登入成功'
+    //     })
+    //   } else {
+    //     res.send({
+    //       status: 400,
+    //       message: '用户名或密码错误！请重新输入'
+    //     })
+    //   }
+    // } else {
+    //   res.send({
+    //     status: 400,
+    //     message: '用户不存在'
+    //   })
+    // }
   })
   
 }
@@ -100,7 +139,6 @@ exports.login = (req, res) => {
  * @apiName login
  * @apiGroup User
  *
- * @apiParam {Number} id 用户名id
  * @apiParam {String} username 登入的用户名
  * @apiParam {String} password 登入的密码
  *
@@ -129,7 +167,7 @@ exports.getUsers = (req, res) => {
 }
 
 /**
- * @api {get} /api/getUsers 获取用户列表
+ * @api {get} /my/getUsers 获取用户列表
  * @apiname getUsers
  * @apiGroup User
  * 
@@ -177,14 +215,74 @@ exports.upDataUserInfo = (req, res) => {
 }
 
 /**
- * @api {post} /api/upDataUserInfo 更新用户数据
+ * @api {post} /my/upDataUserInfo 更新用户数据
  * @apiname updataUserInfo
  * @apiGroup User
  * 
- * @apiParam {String} username 更新的用户名
+ * @apiParam {String} nickname 更新的用户名
  * @apiParam {String} email 更新的 email 数据
  * @apiParam {Number} id 更新用户的 id
  * 
  * @apiSuccess {Number} status 请求体返回的状态码
  * @apiSuccess {String} message 返回的请求说明
+*/
+
+// 重置密码
+exports.updataPassword = (req, res) => {
+  const userItem = req.body
+  console.log(userItem)
+  const fandUser = 'select * from userInfo where id = ?'
+  db.query(fandUser, parseInt(userItem.id), (err, results) => {
+    if (err) return res.cc(err, 400)
+    if (results.length !== 1) return res.cc('用户不存在', 300)
+    // 判断提交的旧密码是否正确
+    const compareResult = bcrypt.compareSync(userItem.oldPassword, results[0].password)
+    if(!compareResult) return res.cc('原密码错误！', 300)
+    userItem.newPassword = bcrypt.hashSync(userItem.newPassword, 10)
+    const sqlStr = 'update userInfo set password = ? where id = ?'
+    db.query(sqlStr, [userItem.newPassword, userItem.id], (err, results) => {
+      if(err) return res.cc(err, 500)
+      if(results.affectedRows !== 1) return res.cc('修改密码失败', 500)
+      res.send({
+        status: 200,
+        message: '修改密码成功'
+      })
+    })
+  })
+}
+
+/**
+ * @api /my/updataPassword 重置用户密码
+ * @apiName updataPassword
+ * @apiGroup User
+ * 
+ * @apiParam {Number} id 用户id
+ * @apiParam {String} oldPassword 旧密码
+ * @apiParam {String} newPassword 新密码
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} messsge 请求说明 
+*/
+
+
+// 更换用户头像
+exports.replaceUserPic = (req, res) => {
+  const sqlStr = 'update userInfo set user_pic = ? where id = ?'
+  db.query(sqlStr, [], (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.affectedRows !== 1) return res.cc('更换头像失败', 400)
+    res.cc('更换头像成功', 200)
+  })
+}
+
+/**
+ * @api /my/replaceUserPic 更换用户头像
+ * @apiName replaceUserPic
+ * @apiGroup User
+ * 
+ * @apiParam {String} token token编码
+ * @apiParam {Number} id 用户id
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 请求说明
 */

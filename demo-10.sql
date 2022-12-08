@@ -10,3 +10,27 @@ UPDATE book_class SET STATUS = 0 WHERE id = 1
 
 SELECT * FROM userInfo LEFT JOIN book_class ON userInfo.id = book_class.id 
 SELECT * FROM userInfo AS u LEFT JOIN book_class AS b ON u.id = b.id
+
+SELECT * FROM user_article WHERE STATUS = 0 AND userId = 1 LIMIT 0, 10
+INSERT INTO user_article SET article_title = '《江南》', article_body = '江南可采莲，莲叶何田田。
+　　鱼戏莲叶间。
+　　鱼戏莲叶东，鱼戏莲叶西。
+　　鱼戏莲叶南，鱼戏莲叶北',
+article_Type = '言情',userId = 1
+
+INSERT INTO user_article SET article_title = '《长歌行》',article_body = '青青园中葵，朝露待日曦。
+　　阳春布德泽，万物生光辉。
+　　常恐秋节至，焜黄华叶衰。
+　　百川东到海，何时复西归。
+　　少壮不努力，老大徒伤悲。',article_Type = '言情',userId = 1
+
+SELECT * FROM user_article
+UPDATE user_article SET STATUS = 0 WHERE STATUS = 1
+DELETE FROM user_article WHERE id = 16
+
+INSERT INTO book_class SET nameClass = '搞笑'
+
+
+SELECT * FROM imageWZ
+INSERT INTO imageWZ SET imageUrl = '/image/阿轲/阿轲-6.jpg', imageType = '阿轲'
+SELECT * FROM imageWZ WHERE imageType = '上官婉儿' LIMIT 0, 1

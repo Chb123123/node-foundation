@@ -1,4 +1,5 @@
 const db = require('../mysqlFrom')
+const db1 = require('../mysqlFrom/goods')
 
 // 获取图书分类
 exports.getBookClass = (req, res) => {
@@ -129,4 +130,81 @@ exports.reMoveClass = (req, res) => {
  * 
  * @apiSuccess {Number} status 请求状态码
  * @apiSuccess {String} message 请求描述
+*/
+
+
+// 获取商品信息
+exports.getGoods = (req, res) => {
+  const sqlStr = 'select * from shopping_cart'
+  db1.query(sqlStr, (err, results) => {
+    if(err) return res.cc(err, 300)
+    res.send({
+      status: 200,
+      message: '获取数据成功',
+      queryData: results
+    })
+  })
+}
+
+/**
+ * @api {get} /api/getGoods 获取商品信息
+ * @apiName getGoods
+ * @apiGroup Goods
+ * 
+ * @apiSuccess {Number} status 请求码
+ * @apiSuccess {String} message 请求说明
+ * @apiSuccess {Array} queryData 返回的数据
+*/
+
+// 修改商品状态
+exports.upDateCheck = (req, res) => {
+  const info = req.body
+  // console.log(parseInt(info.check))
+  if(parseInt(info.check) === 1 || parseInt(info.check) === 0) {
+    const sqlStr = 'update shopping_cart set check1 = ? where id = ?'
+    db1.query(sqlStr, [parseInt(info.check), parseInt(info.id)], (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.affectedRows !== 1) return res.cc('修改状态失败', 500)
+    res.cc('修改状态成功', 200)
+  })
+  } else {
+    return res.cc('状态格式错误', 300)
+  }
+  
+}
+
+/**
+ * @api {post} /api/updateCheck 修改商品选中状态
+ * @apiName UpdateCheck
+ * @apiGroup Goods
+ * 
+ * @apiParam {Number} id 要修改的商品 id
+ * @apiParam {Number} check 要修改的商品状态 1 选中 0 未选中
+ * 
+ * @apiSuccess {Number} status 状态返回码
+ * @apiSuccess {String} message 状态返回说明
+*/
+
+// 修改商品数量
+exports.upDateCount = (req, res) => {
+  const info = req.body
+  if(info.count < 0) return res.cc('商品数量不能小于0', 300)
+  const sqlStr = 'update shopping_cart set count = ? where id = ?'
+  db1.query(sqlStr, [parseInt(info.count), parseInt(info.id)], (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.affectedRows !== 1) return res.cc('修改数量失败', 500)
+    res.cc('修改数量成功', 200)
+  })
+}
+
+/**
+ * @api {post} /api/upDateCount 修改商品选中状态
+ * @apiName UpdateCount
+ * @apiGroup Goods
+ * 
+ * @apiParam {Number} id 要修改的商品 id
+ * @apiParam {Number} count 要修改的商品数量
+ * 
+ * @apiSuccess {Number} status 状态返回码
+ * @apiSuccess {String} message 状态返回说明
 */
