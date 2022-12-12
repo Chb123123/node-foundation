@@ -31,7 +31,7 @@ exports.getBookClass = (req, res) => {
 // 新增图书分类
 exports.addBookClass = (req, res) => {
   const bookInfo = req.query
-  console.log(bookInfo)
+  // console.log(bookInfo)
   const sqlStr1 = 'select * from book_class where nameClass = ? and status = 0'
   db.query(sqlStr1, bookInfo.className, (err, results) => {
     if(err) return res.cc(err, 500)
@@ -67,7 +67,7 @@ exports.addBookClass = (req, res) => {
 exports.upDateClass = (req, res) => {
   const className = req.query
   // 判断是否有输入的类名
-  console.log(className)
+  // console.log(className)
   const sqlStr = 'select * from book_class where nameClass = ? and status = 0'
   db.query(sqlStr, className.className, (err, results) => {
     if (err) return res.cc(err, 600)
@@ -198,7 +198,7 @@ exports.upDateCount = (req, res) => {
 }
 
 /**
- * @api {post} /api/upDateCount 修改商品选中状态
+ * @api {post} /api/upDateCount 修改商品数量
  * @apiName UpdateCount
  * @apiGroup Goods
  * 
@@ -207,4 +207,41 @@ exports.upDateCount = (req, res) => {
  * 
  * @apiSuccess {Number} status 状态返回码
  * @apiSuccess {String} message 状态返回说明
+*/
+
+// 修改全选状态
+
+exports.selectAll = (req, res) => {
+  const statusList = req.body.goodsList
+  // console.log(statusList)
+  // 修改失败的商品列表
+  let errList = []
+  const sqlStr = 'update shopping_cart set check1 = ? where id = ?'
+  for (let i = 0; i < statusList.length; i++) {
+    db1.query(sqlStr, [parseInt(statusList[i].check), parseInt(statusList[i].id)], (err, results) => {
+      if(err) return res.cc(err)
+      if(results.affectedRows !== 1) {
+        errList.push(statusList[i])
+      }
+    })
+  }
+  // console.log(errList)
+  if(errList.length <= 0) return res.cc('修改状态成功', 200)
+  res.send({
+    status: 301,
+    message: '修改状态失败',
+    errList: errList
+  })
+}
+
+/**
+ * @api {post} /api/selectAll 修改全选状态
+ * @apiName SelectAll
+ * @apiGroup Goods
+ * 
+ * @apiParam {Array} goodsList 要切换的数组信息，示例：[{id: 1,check: 1},{id: 2,check: 1}]
+ * 
+ * @apiSuccess {Number} status 状态返回码
+ * @apiSuccess {String} message 状态返回说明
+ * 
 */

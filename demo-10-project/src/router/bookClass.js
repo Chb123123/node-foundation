@@ -23,4 +23,7 @@ router.post('/updateCheck', bookInfo.upDateCheck)
 // 修改商品数量
 router.post('/updateCount', bookInfo.upDateCount) 
 
+// 全选状态更改
+router.post('/selectList', bookInfo.selectAll)
+
 module.exports = router
