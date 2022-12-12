@@ -18,19 +18,22 @@ INSERT INTO user_article SET article_title = '《江南》', article_body = '江
 　　鱼戏莲叶南，鱼戏莲叶北',
 article_Type = '言情',userId = 1
 
-INSERT INTO user_article SET article_title = '《长歌行》',article_body = '青青园中葵，朝露待日曦。
+insert into user_article set article_title = '《长歌行》',article_body = '青青园中葵，朝露待日曦。
 　　阳春布德泽，万物生光辉。
 　　常恐秋节至，焜黄华叶衰。
 　　百川东到海，何时复西归。
 　　少壮不努力，老大徒伤悲。',article_Type = '言情',userId = 1
 
-SELECT * FROM user_article
-UPDATE user_article SET STATUS = 0 WHERE STATUS = 1
-DELETE FROM user_article WHERE id = 16
+select * from user_article
+update user_article set status = 0 where status = 1
+delete from user_article where id = 16
 
-INSERT INTO book_class SET nameClass = '搞笑'
+insert into book_class set nameClass = '搞笑'
 
 
-SELECT * FROM imageWZ
-INSERT INTO imageWZ SET imageUrl = '/image/阿轲/阿轲-6.jpg', imageType = '阿轲'
-SELECT * FROM imageWZ WHERE imageType = '上官婉儿' LIMIT 0, 1
+select * from imageWZ
+insert into imageWZ set imageUrl = '/image/阿轲/阿轲-6.jpg', imageType = '阿轲'
+select * from imageWZ where imageType = '上官婉儿' limit 0, 1
+ 
+select * from userInfo
+select * from userInfo where id = 8

@@ -170,7 +170,6 @@ exports.upDateCheck = (req, res) => {
   } else {
     return res.cc('状态格式错误', 300)
   }
-  
 }
 
 /**
@@ -217,6 +216,7 @@ exports.selectAll = (req, res) => {
   // 修改失败的商品列表
   let errList = []
   const sqlStr = 'update shopping_cart set check1 = ? where id = ?'
+  // 循环修改列表内数据的状态
   for (let i = 0; i < statusList.length; i++) {
     db1.query(sqlStr, [parseInt(statusList[i].check), parseInt(statusList[i].id)], (err, results) => {
       if(err) return res.cc(err)
