@@ -26,4 +26,10 @@ router.post('/updateCount', bookInfo.upDateCount)
 // 全选状态更改
 router.post('/selectList', bookInfo.selectAll)
 
+// Table 案例 商品列表
+router.get('/getTableInfo', bookInfo.getTableInfo)
+
+// 自定义商品标签
+router.post('/custom', bookInfo.custom)
+
 module.exports = router

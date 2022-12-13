@@ -245,3 +245,60 @@ exports.selectAll = (req, res) => {
  * @apiSuccess {String} message 状态返回说明
  * 
 */
+
+
+// 查询商品列表
+exports.getTableInfo = (req, res) => {
+  const sqlStr = 'select * from tableInfo'
+  db1.query(sqlStr, (err, results) => {
+    if(err) return res.cc(err, 500)
+    // 格式化自定义标签
+    results.some(item => {
+      if(item.label) {
+        item.label = item.label.split(',')
+      } else {
+        item.label = []
+      }
+    })
+    res.send({
+      status: 200,
+      message: '请求成功',
+      queryData: results
+    })
+  })
+}
+
+/**
+ * @api {get} /api/getTableInfo 查询商品列表
+ * @apiName GetTableList
+ * @apiGroup Goods
+ * 
+ * @apiSuccess {Number} status 请求状态码
+ * @apiSuccess {String} message 请求说明
+*/
+
+// 自定义商品标签
+exports.custom = (req, res) => {
+  let info = req.body
+  
+  console.log(info)
+  // const sqlStr = 'update tableInfo set label = ? where id = ?'
+  // db1.query(sqlStr, [], (err, results) => {
+  //   if(err) return res.cc(err, 500)
+  //   if(results.affectedRows !== 1) return res.cc('新增标签失败', 300)
+  //   res.cc('新增标签成功', 200)
+  // })
+  res.send('ok')
+}
+
+/**
+ * @api {post} /api/custom 自定义商品标签
+ * @apiName Custom
+ * @apiGroup Goods
+ * 
+ * @apiParam {Number} id 商品 Id
+ * @apiParam {String} label 商品标签
+ * 
+ * @apiSuccess {Numver} status 请求状态码
+ * @apiSuccess {String} message 请求状态说明
+*/
