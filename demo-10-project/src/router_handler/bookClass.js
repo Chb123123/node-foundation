@@ -249,7 +249,7 @@ exports.selectAll = (req, res) => {
 
 // 查询商品列表
 exports.getTableInfo = (req, res) => {
-  const sqlStr = 'select * from tableInfo'
+  const sqlStr = 'select * from tableInfo where status = 1'
   db1.query(sqlStr, (err, results) => {
     if(err) return res.cc(err, 500)
     // 格式化自定义标签
@@ -271,7 +271,7 @@ exports.getTableInfo = (req, res) => {
 /**
  * @api {get} /api/getTableInfo 查询商品列表
  * @apiName GetTableList
- * @apiGroup Goods
+ * @apiGroup GoodsDemo
  * 
  * @apiSuccess {Number} status 请求状态码
  * @apiSuccess {String} message 请求说明
@@ -280,25 +280,61 @@ exports.getTableInfo = (req, res) => {
 // 自定义商品标签
 exports.custom = (req, res) => {
   let info = req.body
-  
-  console.log(info)
-  // const sqlStr = 'update tableInfo set label = ? where id = ?'
-  // db1.query(sqlStr, [], (err, results) => {
-  //   if(err) return res.cc(err, 500)
-  //   if(results.affectedRows !== 1) return res.cc('新增标签失败', 300)
-  //   res.cc('新增标签成功', 200)
-  // })
-  res.send('ok')
+  console.log(info.id)
+  let label
+  let sqlStr = 'SELECT label FROM tableInfo WHERE id = ?'
+  db1.query(sqlStr, parseInt(info.id), (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.length) {
+      if(results[0].label) {
+        label = results[0].label.split(',')
+      } else {
+        label = []
+      }
+    } else {
+      return res.cc('商品不存在', 300)
+    }
+    label.push(info.label)
+    label = label.join(',')
+    const sqlStr1 = 'update tableInfo set label = ? where id = ?'
+    db1.query(sqlStr1, [label, info.id], (err, results) => {
+      if(err) return res.cc(err, 500)
+      if(results.affectedRows !== 1) return res.cc('新增标签失败', 300)
+      res.cc('新增标签成功', 200)
+    })
+  })
 }
 
 /**
  * @api {post} /api/custom 自定义商品标签
  * @apiName Custom
- * @apiGroup Goods
+ * @apiGroup GoodsDemo
  * 
  * @apiParam {Number} id 商品 Id
  * @apiParam {String} label 商品标签
  * 
  * @apiSuccess {Numver} status 请求状态码
+ * @apiSuccess {String} message 请求状态说明
+*/
+
+// 删除商品
+exports.deleteItem = (req, res) => {
+  const info = req.body
+  const sqlStr = 'update tableInfo set status = 0 where id = ?'
+  db1.query(sqlStr, parseInt(info.id), (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.affectedRows !== 1) return res.cc('删除商品失败', 300)
+    res.cc('删除商品成功', 200)
+  })
+}
+
+/**
+ * @api {POST} /api/deleteItem 删除商品接口
+ * @apiName deleteItem
+ * @apiGroup GoodsDemo
+ * 
+ * @apiParam {Number} id 商品对应id
+ * 
+ * @apiSuccess {Number} status 请求状态码
  * @apiSuccess {String} message 请求状态说明
 */

@@ -32,4 +32,7 @@ router.get('/getTableInfo', bookInfo.getTableInfo)
 // 自定义商品标签
 router.post('/custom', bookInfo.custom)
 
+// 删除商品
+router.post('/deleteItem', bookInfo.deleteItem)
+
 module.exports = router
