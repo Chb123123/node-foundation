@@ -338,3 +338,27 @@ exports.deleteItem = (req, res) => {
  * @apiSuccess {Number} status 请求状态码
  * @apiSuccess {String} message 请求状态说明
 */
+
+// 是否显示 input 元素
+exports.updateInput = (req, res) => {
+  const info = req.body
+  console.log(parseInt(info.status), parseInt(info.id))
+  const sqlStr = 'UPDATE tableinfo SET showInput = ? WHERE id = ?'
+  db1.query(sqlStr, [parseInt(info.status), parseInt(info.id)], (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.affectedRows !== 1) return res.cc('修改状态失败！', 300)
+    res.cc('修改状态成功', 200)
+  })
+}
+
+/**
+ * @api {POST} /api/updateInput 修改input 显示状态
+ * @apiName updateStatus
+ * @apiGroup GoodsDemo
+ * 
+ * @apiParam {Number} id 商品对应 Id
+ * @apiParam {Number} status 商品对应输入框显示数据
+ * 
+ * @apiSuccess {Number} status 状态返回码
+ * @apiSuccess {String} message 状态返回说明
+*/

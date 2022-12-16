@@ -35,4 +35,7 @@ router.post('/custom', bookInfo.custom)
 // 删除商品
 router.post('/deleteItem', bookInfo.deleteItem)
 
+// 修改商品标签输入框状态
+router.post('/updateInput', bookInfo.updateInput)
+
 module.exports = router
