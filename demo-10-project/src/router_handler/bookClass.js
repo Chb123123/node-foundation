@@ -5,10 +5,6 @@ const db1 = require('../mysqlFrom/goods')
 exports.getBookClass = (req, res) => {
   const sqlStr = 'select id, nameClass from book_class where status = 0'
   db.query(sqlStr, (err, results) => {
-    // if(err) return res.send({
-    //   status: 500,
-    //   message: '请稍后重试！'
-    // })
     if(err) return res.cc('请稍后重试', 500)
     res.send({
       status: 200,
@@ -70,7 +66,7 @@ exports.upDateClass = (req, res) => {
   // console.log(className)
   const sqlStr = 'select * from book_class where nameClass = ? and status = 0'
   db.query(sqlStr, className.className, (err, results) => {
-    if (err) return res.cc(err, 600)
+    if (err) return res.cc(err, 500)
     if(results.length !== 0) return res.cc('文章类名已存在，请重新输入', 400)
     const sqlStr1 = 'update book_class set nameClass = ? where id = ? and status = 0'
     db.query(sqlStr1, [className.className, parseInt(className.id)], (err, results) => {
@@ -342,7 +338,7 @@ exports.deleteItem = (req, res) => {
 // 是否显示 input 元素
 exports.updateInput = (req, res) => {
   const info = req.body
-  console.log(parseInt(info.status), parseInt(info.id))
+  // console.log(parseInt(info.status), parseInt(info.id))
   const sqlStr = 'UPDATE tableinfo SET showInput = ? WHERE id = ?'
   db1.query(sqlStr, [parseInt(info.status), parseInt(info.id)], (err, results) => {
     if(err) return res.cc(err, 500)
@@ -361,4 +357,79 @@ exports.updateInput = (req, res) => {
  * 
  * @apiSuccess {Number} status 状态返回码
  * @apiSuccess {String} message 状态返回说明
+*/
+
+
+
+// 综合案例
+// 获取表单请求数据
+
+exports.getTableList = (req, res) => {
+  const sql = 'select * from tableList where status = 1'
+  db1.query(sql, (err, results) => {
+    if(err) return res.cc(err)
+    res.send({
+      status: 200,
+      message: '获取表单数据成功',
+      queryData: results
+    })
+  })
+}
+
+/**
+ * @api {get} /api/getTableList 获取表单数据
+ * @apiName getTableList
+ * @apiGroup synthesizeDemo
+ * 
+ * @apiSuccess {Number} status 返回的表单数据
+ * @apiSuccess {String} message 返回的请求说明
+*/
+
+// 修改表单状态
+exports.updateTableStatus = (req, res) => {
+  const info = req.body
+  const sql = 'update tableList set status = 0 where id = ?'
+  db1.query(sql, parseInt(info.id), (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.affectedRows !== 1) res.cc('修改状态失败', 300)
+    res.cc('修改状态成功', 200)
+  })
+}
+
+/**
+ * @api {post} /api/updateTableStatus 修改表单状态
+ * @apiName updateTableStatus
+ * @apiGroup synthesizeDemo
+ * 
+ * @apiParam {Number} id 要删除的表单 id
+ * 
+ * @apiSuccess {Number} status 返回的请求状态
+ * @apiSuccess {String} message 返回的请求说明
+ * 
+*/
+
+// 新增表单数据
+
+exports.addTableItem = (req, res) => {
+  const info = req.body
+  const sql = 'insert into tableList set name = ?, age = ?, title = ?, time = ?'
+  db1.query(sql, [info.name, parseInt(info.age), info.title, info.time], (err, results) => {
+    if(err) return res.cc(err, 500)
+    if(results.affectedRows !== 1) return res.cc('新增数据失败', 300)
+    res.cc('新增数据成功!', 200)
+  })
+}
+
+/**
+ * @api {post} /api/addTableItem 新增表单数据
+ * @apiName addTableItem
+ * @apiGroup synthesizeDemo
+ * 
+ * @apiParam {String} name 新增的用户名称
+ * @apiParam {Number} age 新增的用户年龄
+ * @apiParam {String} title 新增用户的头衔
+ * @apiParam {String} time 用户注册时间
+ * 
+ * @apiSuccess {Number} status 接口返回状态
+ * @apiSuccess {String} message 接口返回说明
 */

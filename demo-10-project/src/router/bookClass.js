@@ -1,3 +1,4 @@
+const { Router } = require('express')
 const express = require('express')
 const router = express.Router()
 
@@ -37,5 +38,13 @@ router.post('/deleteItem', bookInfo.deleteItem)
 
 // 修改商品标签输入框状态
 router.post('/updateInput', bookInfo.updateInput)
+
+// 综合案例
+// 获取表单数据列表
+router.get('/getTableList', bookInfo.getTableList)
+
+router.post('/addTableItem', bookInfo.addTableItem)
+
+router.post('/updateTableStatus', bookInfo.updateTableStatus)
 
 module.exports = router
