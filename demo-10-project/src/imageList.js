@@ -1,4 +1,5 @@
 // const db = require('./mysqlFrom')
+// 此代码仅仅用于向数据库填充数据，没有任何实际作用
 const mysql = require('mysql')
 const db = mysql.createPool({
   host: '127.0.0.1', 
