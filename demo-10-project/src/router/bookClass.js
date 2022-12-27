@@ -42,9 +42,9 @@ router.post('/updateInput', bookInfo.updateInput)
 // 综合案例
 // 获取表单数据列表
 router.get('/getTableList', bookInfo.getTableList)
-
+// 新增表单数据
 router.post('/addTableItem', bookInfo.addTableItem)
-
+// 删除表单数据
 router.post('/updateTableStatus', bookInfo.updateTableStatus)
 
 module.exports = router

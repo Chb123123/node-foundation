@@ -5,7 +5,7 @@ const db1 = require('../mysqlFrom/goods')
 exports.getBookClass = (req, res) => {
   const sqlStr = 'select id, nameClass from book_class where status = 0'
   db.query(sqlStr, (err, results) => {
-    if(err) return res.cc('请稍后重试', 500)
+    if (err) return res.cc('请稍后重试', 500)
     res.send({
       status: 200,
       message: '请求成功',
@@ -30,21 +30,21 @@ exports.addBookClass = (req, res) => {
   // console.log(bookInfo)
   const sqlStr1 = 'select * from book_class where nameClass = ? and status = 0'
   db.query(sqlStr1, bookInfo.className, (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.length > 0) {
+    if (err) return res.cc(err, 500)
+    if (results.length > 0) {
       return res.cc('类名已存在', 300)
     }
     const sqlStr = 'insert into book_class set nameClass = ?'
     db.query(sqlStr, bookInfo.className, (err, results) => {
-    if(err) return res.cc('请稍后重试', 500)
-    if(results.affectedRows === 1) {
-      return res.send({
-        status: 200,
-        message: '添加类名成功'
-      })
-    }
-    res.cc('添加图书失败', 400)
-  })
+      if (err) return res.cc('请稍后重试', 500)
+      if (results.affectedRows === 1) {
+        return res.send({
+          status: 200,
+          message: '添加类名成功'
+        })
+      }
+      res.cc('添加图书失败', 400)
+    })
   })
 }
 
@@ -67,11 +67,11 @@ exports.upDateClass = (req, res) => {
   const sqlStr = 'select * from book_class where nameClass = ? and status = 0'
   db.query(sqlStr, className.className, (err, results) => {
     if (err) return res.cc(err, 500)
-    if(results.length !== 0) return res.cc('文章类名已存在，请重新输入', 400)
+    if (results.length !== 0) return res.cc('文章类名已存在，请重新输入', 400)
     const sqlStr1 = 'update book_class set nameClass = ? where id = ? and status = 0'
     db.query(sqlStr1, [className.className, parseInt(className.id)], (err, results) => {
-      if(err) return res.cc(err, 500)
-      if(results.affectedRows === 1) {
+      if (err) return res.cc(err, 500)
+      if (results.affectedRows === 1) {
         return res.send({
           status: 200,
           message: '类名更改成功'
@@ -102,16 +102,16 @@ exports.reMoveClass = (req, res) => {
   const bookInfo = req.query
   const findData = 'select * from book_class where id = ? and status = 0'
   db.query(findData, bookInfo.id, (err, results) => {
-    if(err) return res.cc(err, 500)
+    if (err) return res.cc(err, 500)
     const sqlStr = 'update book_class set status = 1 where id = ? and status = 0'
     db.query(sqlStr, bookInfo.id, (err, results) => {
-      if(err) return res.cc(err, 500)
-      if(results.affectedRows == 1) {
+      if (err) return res.cc(err, 500)
+      if (results.affectedRows == 1) {
         return res.send({
           status: 200,
           message: '删除图书类名成功'
         })
-      } 
+      }
       res.cc('删除图书类名失败，请稍后重试', 400)
     })
   })
@@ -133,7 +133,7 @@ exports.reMoveClass = (req, res) => {
 exports.getGoods = (req, res) => {
   const sqlStr = 'select * from shopping_cart'
   db1.query(sqlStr, (err, results) => {
-    if(err) return res.cc(err, 300)
+    if (err) return res.cc(err, 300)
     res.send({
       status: 200,
       message: '获取数据成功',
@@ -156,13 +156,13 @@ exports.getGoods = (req, res) => {
 exports.upDateCheck = (req, res) => {
   const info = req.body
   // console.log(parseInt(info.check))
-  if(parseInt(info.check) === 1 || parseInt(info.check) === 0) {
+  if (parseInt(info.check) === 1 || parseInt(info.check) === 0) {
     const sqlStr = 'update shopping_cart set check1 = ? where id = ?'
     db1.query(sqlStr, [parseInt(info.check), parseInt(info.id)], (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.affectedRows !== 1) return res.cc('修改状态失败', 500)
-    res.cc('修改状态成功', 200)
-  })
+      if (err) return res.cc(err, 500)
+      if (results.affectedRows !== 1) return res.cc('修改状态失败', 500)
+      res.cc('修改状态成功', 200)
+    })
   } else {
     return res.cc('状态格式错误', 300)
   }
@@ -183,11 +183,11 @@ exports.upDateCheck = (req, res) => {
 // 修改商品数量
 exports.upDateCount = (req, res) => {
   const info = req.body
-  if(info.count < 0) return res.cc('商品数量不能小于0', 300)
+  if (info.count < 0) return res.cc('商品数量不能小于0', 300)
   const sqlStr = 'update shopping_cart set count = ? where id = ?'
   db1.query(sqlStr, [parseInt(info.count), parseInt(info.id)], (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.affectedRows !== 1) return res.cc('修改数量失败', 500)
+    if (err) return res.cc(err, 500)
+    if (results.affectedRows !== 1) return res.cc('修改数量失败', 500)
     res.cc('修改数量成功', 200)
   })
 }
@@ -215,14 +215,14 @@ exports.selectAll = (req, res) => {
   // 循环修改列表内数据的状态
   for (let i = 0; i < statusList.length; i++) {
     db1.query(sqlStr, [parseInt(statusList[i].check), parseInt(statusList[i].id)], (err, results) => {
-      if(err) return res.cc(err)
-      if(results.affectedRows !== 1) {
+      if (err) return res.cc(err)
+      if (results.affectedRows !== 1) {
         errList.push(statusList[i])
       }
     })
   }
   // console.log(errList)
-  if(errList.length <= 0) return res.cc('修改状态成功', 200)
+  if (errList.length <= 0) return res.cc('修改状态成功', 200)
   res.send({
     status: 301,
     message: '修改状态失败',
@@ -247,10 +247,10 @@ exports.selectAll = (req, res) => {
 exports.getTableInfo = (req, res) => {
   const sqlStr = 'select * from tableInfo where status = 1'
   db1.query(sqlStr, (err, results) => {
-    if(err) return res.cc(err, 500)
+    if (err) return res.cc(err, 500)
     // 格式化自定义标签
     results.some(item => {
-      if(item.label) {
+      if (item.label) {
         item.label = item.label.split(',')
       } else {
         item.label = []
@@ -280,9 +280,9 @@ exports.custom = (req, res) => {
   let label
   let sqlStr = 'SELECT label FROM tableInfo WHERE id = ?'
   db1.query(sqlStr, parseInt(info.id), (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.length) {
-      if(results[0].label) {
+    if (err) return res.cc(err, 500)
+    if (results.length) {
+      if (results[0].label) {
         label = results[0].label.split(',')
       } else {
         label = []
@@ -294,8 +294,8 @@ exports.custom = (req, res) => {
     label = label.join(',')
     const sqlStr1 = 'update tableInfo set label = ? where id = ?'
     db1.query(sqlStr1, [label, info.id], (err, results) => {
-      if(err) return res.cc(err, 500)
-      if(results.affectedRows !== 1) return res.cc('新增标签失败', 300)
+      if (err) return res.cc(err, 500)
+      if (results.affectedRows !== 1) return res.cc('新增标签失败', 300)
       res.cc('新增标签成功', 200)
     })
   })
@@ -318,8 +318,8 @@ exports.deleteItem = (req, res) => {
   const info = req.body
   const sqlStr = 'update tableInfo set status = 0 where id = ?'
   db1.query(sqlStr, parseInt(info.id), (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.affectedRows !== 1) return res.cc('删除商品失败', 300)
+    if (err) return res.cc(err, 500)
+    if (results.affectedRows !== 1) return res.cc('删除商品失败', 300)
     res.cc('删除商品成功', 200)
   })
 }
@@ -341,8 +341,8 @@ exports.updateInput = (req, res) => {
   // console.log(parseInt(info.status), parseInt(info.id))
   const sqlStr = 'UPDATE tableinfo SET showInput = ? WHERE id = ?'
   db1.query(sqlStr, [parseInt(info.status), parseInt(info.id)], (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.affectedRows !== 1) return res.cc('修改状态失败！', 300)
+    if (err) return res.cc(err, 500)
+    if (results.affectedRows !== 1) return res.cc('修改状态失败！', 300)
     res.cc('修改状态成功', 200)
   })
 }
@@ -367,7 +367,7 @@ exports.updateInput = (req, res) => {
 exports.getTableList = (req, res) => {
   const sql = 'select * from tableList where status = 1'
   db1.query(sql, (err, results) => {
-    if(err) return res.cc(err)
+    if (err) return res.cc(err)
     res.send({
       status: 200,
       message: '获取表单数据成功',
@@ -390,8 +390,8 @@ exports.updateTableStatus = (req, res) => {
   const info = req.body
   const sql = 'update tableList set status = 0 where id = ?'
   db1.query(sql, parseInt(info.id), (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.affectedRows !== 1) res.cc('修改状态失败', 300)
+    if (err) return res.cc(err, 500)
+    if (results.affectedRows !== 1) res.cc('修改状态失败', 300)
     res.cc('修改状态成功', 200)
   })
 }
@@ -414,8 +414,8 @@ exports.addTableItem = (req, res) => {
   const info = req.body
   const sql = 'insert into tableList set name = ?, age = ?, title = ?, time = ?'
   db1.query(sql, [info.name, parseInt(info.age), info.title, info.time], (err, results) => {
-    if(err) return res.cc(err, 500)
-    if(results.affectedRows !== 1) return res.cc('新增数据失败', 300)
+    if (err) return res.cc(err, 500)
+    if (results.affectedRows !== 1) return res.cc('新增数据失败', 300)
     res.cc('新增数据成功!', 200)
   })
 }
