@@ -1,4 +1,4 @@
-const { Router } = require('express')
+// const { Router } = require('express')
 const express = require('express')
 const router = express.Router()
 
@@ -46,5 +46,9 @@ router.get('/getTableList', bookInfo.getTableList)
 router.post('/addTableItem', bookInfo.addTableItem)
 // 删除表单数据
 router.post('/updateTableStatus', bookInfo.updateTableStatus)
+
+// 测试插入的数据
+router.get('/getUserNameList', bookInfo.getUserNameList)
+router.post('/upDateUserNameStatus', bookInfo.upDateUserNameStatus)
 
 module.exports = router

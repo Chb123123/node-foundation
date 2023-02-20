@@ -50,6 +50,7 @@ app.use('/my', userRouter)
 
 // 错误中间件
 app.use((err, req, res, next) => {
+  // console.log(err)
   // 表单验证失败
   if(err instanceof joi.ValidationError) return res.cc(err, 400)
   // 判断是否是 token 认证失败

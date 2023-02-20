@@ -33,7 +33,8 @@ insert into book_class set nameClass = '搞笑'
 
 select * from imageWZ
 insert into imageWZ set imageUrl = '/image/阿轲/阿轲-6.jpg', imageType = '阿轲'
-select * from imageWZ where imageType = '上官婉儿' limit 0, 1
+select * from imageWZ where imageType = '小乔' limit 0, 10
  
 select * from userInfo
 select * from userInfo where id = 8
+select * from 

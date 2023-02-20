@@ -433,3 +433,74 @@ exports.addTableItem = (req, res) => {
  * @apiSuccess {Number} status 接口返回状态
  * @apiSuccess {String} message 接口返回说明
 */
+
+
+
+// 测试注册的接口
+// 获取数据列表
+exports.getUserNameList = (req, res) => {
+  // console.log(req.query)
+  const sqlStr = 'select id, user, price, age, gender from moduleList limit ?, ?'
+  if(!req.query.page && !req.query.size) return res.cc('传输的数据不规范')
+  let page = parseInt(req.query.page)
+  let size = parseInt(req.query.size)
+  let sqlStr1 = 'select count(*) as count from moduleList'
+  db.query(sqlStr1, (err, results) => {
+    if(err) return res.cc('获取数据失败1')
+    let num = results[0].count
+    db.query(sqlStr, [page, size], (err, results1) => {
+      if(err) return res.cc('获取数据失败2')
+      res.send({
+        status: 200,
+        queryData: {
+          count: num,
+          list: results1
+        }
+      })
+    })
+  })
+
+  
+}
+
+/**
+ * @api {get} /api/getUserNameList 获取用户列表
+ * @apiName getUserNameList
+ * @apiGroup User
+ * 
+ * @apiParam {Number} page 开始获取的数据索引
+ * @apiParam {Number} size 获取的数据数量
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {Array} queryData 返回的数据
+*/
+
+// 修改测试用户状态
+exports.upDateUserNameStatus = (req, res) => {
+  if(!req.body.id || !req.body.status) return res.cc('请传入必要的参数')
+  // console.log('123')
+  let userId = parseInt(req.body.id)
+  let userStatus = parseInt(req.body.status)
+  console.log(userId, userStatus)
+  const sqlStr = 'UPDATE moduleList SET type = ? WHERE id = ?'
+  db.query(sqlStr, [userStatus, userId], (err, results) => {
+    if(err) return res.cc(err)
+    if(results.affectedRows !== 1) return res.cc('修改状态失败')
+    res.send({
+      status: 200,
+      message: '修改状态成功'
+    })
+  })
+}
+
+/**
+ * @api {post} /api/upDateUserNameStatus 修改用户状态
+ * @api updateUserStatue
+ * @apiGroup User
+ * 
+ * @apiParam {Number} id 要修改的用户id
+ * @apiParam {Number} status 要修改的用户状态 1表示启用 0表示禁用
+ * 
+ * @apiSuccess {Number} status 返回的状态码
+ * @apiSuccess {String} message 返回的状态说明
+*/
