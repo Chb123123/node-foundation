@@ -1,3 +1,4 @@
+const { number } = require('joi')
 const db = require('../mysqlFrom')
 const db1 = require('../mysqlFrom/goods')
 
@@ -440,7 +441,7 @@ exports.addTableItem = (req, res) => {
 // 获取数据列表
 exports.getUserNameList = (req, res) => {
   // console.log(req.query)
-  const sqlStr = 'select id, user, price, age, gender from moduleList limit ?, ?'
+  const sqlStr = 'select id, user, price, age, gender from moduleList where type = 1 limit ?, ?'
   if(!req.query.page && !req.query.size) return res.cc('传输的数据不规范')
   let page = parseInt(req.query.page)
   let size = parseInt(req.query.size)
@@ -477,11 +478,13 @@ exports.getUserNameList = (req, res) => {
 
 // 修改测试用户状态
 exports.upDateUserNameStatus = (req, res) => {
-  if(!req.body.id || !req.body.status) return res.cc('请传入必要的参数')
-  // console.log('123')
+  const isNum = /[0, 1]$/
+  const isId = /^(?:0|(?:-?[1-9]\d*))$/
+  // console.log(!isId.test(req.body.id) && !isNum.test(req.body.status))
+  if(!isId.test(req.body.id) && !isNum.test(req.body.status)) return res.cc('请传入正确的参数')
   let userId = parseInt(req.body.id)
   let userStatus = parseInt(req.body.status)
-  console.log(userId, userStatus)
+  // console.log(userId, userStatus)
   const sqlStr = 'UPDATE moduleList SET type = ? WHERE id = ?'
   db.query(sqlStr, [userStatus, userId], (err, results) => {
     if(err) return res.cc(err)
