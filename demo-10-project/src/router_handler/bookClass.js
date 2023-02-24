@@ -1,3 +1,4 @@
+const { rule } = require('@hapi/joi/lib/base')
 const { number } = require('joi')
 const db = require('../mysqlFrom')
 const db1 = require('../mysqlFrom/goods')
@@ -498,7 +499,7 @@ exports.upDateUserNameStatus = (req, res) => {
 
 /**
  * @api {post} /api/upDateUserNameStatus 修改用户状态
- * @api updateUserStatue
+ * @apiName updateUserStatue
  * @apiGroup User
  * 
  * @apiParam {Number} id 要修改的用户id
@@ -506,4 +507,61 @@ exports.upDateUserNameStatus = (req, res) => {
  * 
  * @apiSuccess {Number} status 返回的状态码
  * @apiSuccess {String} message 返回的状态说明
+*/
+
+// 新增测试用户数据
+exports.addDateUserStatus = (req, res) => {
+  let userInfo = req.body
+  console.log([userInfo.name?userInfo.name:'',userInfo.age?parseFloat(userInfo.age):'', userInfo.gender?userInfo.gender:'', userInfo.price?parseFloat(userInfo.price):''])
+  // console.log(`姓名：${userInfo.name?userInfo.name:''}-年龄${userInfo.age?userInfo.age:''}-余额:${userInfo.price?userInfo.price:''}-性别:${userInfo.gender?userInfo.gender:''}`)
+  const sqlStr = 'insert into moduleList set user = ?, age = ?, gender = ?, price = ?'
+  db.query(sqlStr,[userInfo.name?userInfo.name:'',userInfo.age?parseFloat(userInfo.age):'', userInfo.gender?userInfo.gender:'', userInfo.price?parseFloat(userInfo.price):''], (err, results) => {
+    if(err) return res.cc(err)
+    if(results.affectedRows !== 1) return res.cc('新增用户数据失败')
+    res.send({
+      status: 200,
+      message: '新增用户成功',
+      data: results
+    })
+  })
+}
+
+/**
+ * @api {post} /api/addDateUserStatus 新增测试用户数据
+ * @apiName addDateUserStatus
+ * @apiGroup User
+ * 
+ * @apiParam {String} name 新增用户名称
+ * @apiParam {Number} age 新增用户年龄
+ * @apiParam {String} gender 新增用户的年龄
+ * @apiParam {Number} price 新增用户的余额（￥）
+ * 
+ * @apiSuccess {Number} status 返回的状态码 200 表示请求成功
+ * @apiSuccess {String} message 返回的请求说明
+*/
+
+// 输入字段查询数据
+exports.queryUserInfo = (req, res) => {
+  let userStr = req.query.userStr
+  let sqlStr = `select id, user, price, age, gender from moduleList where user like("%${userStr?userStr:''}%")`
+  console.log(userStr)
+  db.query(sqlStr, (err, results) => {
+    if(err) return res.cc(err)
+    res.send({
+      status: 200,
+      message: '查询成功',
+      queryData: results
+    })
+  })
+}
+
+/**
+ * @api {get} /api/queryUserInfo 根据字段返回相应数据
+ * @apiName queryUserInfo
+ * @apiGroup User
+ * 
+ * @apiParam {String} userStr 要查询的姓名字段
+ * 
+ * @apiSuccess {Number} status 返回的状态码
+ * @apiSuccess {String} message 返回的请求说明
 */

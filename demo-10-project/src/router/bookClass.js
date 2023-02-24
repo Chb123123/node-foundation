@@ -50,5 +50,7 @@ router.post('/updateTableStatus', bookInfo.updateTableStatus)
 // 测试插入的数据
 router.get('/getUserNameList', bookInfo.getUserNameList)
 router.post('/upDateUserNameStatus', bookInfo.upDateUserNameStatus)
+router.post('/addDateUserStatus', bookInfo.addDateUserStatus) // 新增测试用户数据
+router.get('/queryUserInfo', bookInfo.queryUserInfo) // 查询数据
 
 module.exports = router

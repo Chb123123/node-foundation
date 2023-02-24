@@ -11,6 +11,7 @@ const db = mysql.createPool({
 
 let fileRouter = path.join(__dirname, '/aaa.txt')  // 获取的性列表文件
 let nameList = path.join(__dirname, '/ddd.txt') // 获取的名列表文件
+
 // 需要新增的数据库数据数量
 let addDataCount = 1000
 

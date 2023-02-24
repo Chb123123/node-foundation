@@ -31,7 +31,6 @@ fs.readdir(file, 'utf8', function(err, data) {
             return console.log(url + '添加成功')
           }
           console.log(url + '添加失败!!!')
-          // db.end()
         })
       }
     })
